@@ -13,10 +13,10 @@
             font-family: 'VT323', monospace;
             background-color: #0d0c1d; /* Dark bluish-purple */
             color: #00f0c0; /* Neon green */
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            overflow: hidden; /* Prevent horizontal scroll and hide canvas overflow */
         }
         
-        /* New Synthwave/Wave Rider Background */
+        /* New Canvas Background container */
         .background-container {
             position: fixed;
             top: 0;
@@ -24,40 +24,11 @@
             width: 100%;
             height: 100%;
             z-index: -2;
-            overflow: hidden;
-            background: #0d0c1d;
         }
 
-        .sun {
-            position: absolute;
-            bottom: -50%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150vw;
-            height: 150vw;
-            background: radial-gradient(circle, rgba(240, 0, 240, 0.5) 0%, rgba(240, 0, 240, 0) 60%);
-            border-radius: 50%;
-        }
-
-        .grid-lines {
-            position: absolute;
-            bottom: 0;
-            left: 0;
+        #particle-canvas {
             width: 100%;
-            height: 50%;
-            background: linear-gradient(to top, 
-                transparent, 
-                rgba(0, 240, 192, 0.2) 1px, 
-                transparent 1px, 
-                transparent 10px
-            );
-            background-size: 100% 20px;
-            animation: move-grid 10s linear infinite;
-        }
-
-        @keyframes move-grid {
-            from { background-position-y: 0; }
-            to { background-position-y: -200px; }
+            height: 100%;
         }
 
         .cyber-glow {
@@ -69,26 +40,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .btn-cyber {
-            @apply relative overflow-hidden rounded-lg px-6 py-3 text-lg font-bold transition-all duration-300 ease-in-out;
-            background: linear-gradient(45deg, #f000f0, #00f0c0);
-            color: #0d0c1d;
-            box-shadow: 0 0 10px rgba(0, 240, 192, 0.7), 0 0 20px rgba(240, 0, 240, 0.7);
-        }
-        .btn-cyber::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: skewX(-30deg);
-            transition: all 0.7s ease;
-        }
-        .btn-cyber:hover::before {
-            left: 100%;
-        }
+
         .social-icon {
             @apply transition-transform duration-300 ease-in-out hover:scale-110 relative;
             filter: drop-shadow(0 0 5px rgba(0, 240, 192, 0.5));
@@ -107,37 +59,21 @@
             }
         }
 
-        @keyframes scanline {
-            0% {
-                background-position: 0% 0%;
-            }
-            100% {
-                background-position: 0% 100%;
-            }
-        }
-
-        /* Glitch effect on header */
-        .glitch {
-            position: relative;
-            letter-spacing: -0.05em; /* Tightens character spacing to fix kerning issues */
-        }
-        .glitch::before,
-        .glitch::after {
-            content: attr(data-text);
+        /* Glitch effect structure */
+        .glitch-layer {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #0d0c1d;
-            background: transparent;
+            pointer-events: none; /* So they don't interfere with mouse events */
         }
-        .glitch::before {
+        .glitch-1 {
             left: 2px;
             text-shadow: -2px 0 #f000f0; /* Pink shift */
             animation: glitch-anim-1 2s infinite linear alternate-reverse;
         }
-        .glitch::after {
+        .glitch-2 {
             left: -2px;
             text-shadow: 2px 0 #00f0c0; /* Green shift */
             animation: glitch-anim-2 2s infinite linear alternate-reverse;
@@ -201,23 +137,29 @@
             .social-grid {
                 grid-template-columns: 1fr; /* Stack vertically */
             }
-            .btn-cyber {
-                width: 80%; /* Wider buttons on mobile */
-                margin-bottom: 1rem;
-            }
         }
     </style>
 </head>
 <body class="flex flex-col min-h-screen justify-center items-center p-4">
     <div class="background-container">
-        <div class="sun"></div>
-        <div class="grid-lines"></div>
+        <canvas id="particle-canvas"></canvas>
     </div>
 
     <header class="text-center mb-12">
-        <h1 class="font-['Press_Start_2P'] text-7xl md:text-8xl lg:text-9xl cyber-glow mb-4 relative glitch" data-text="ONLY KAMZ">
-            ONLY KAMZ
-        </h1>
+        <div class="relative">
+            <!-- Main Visible Text -->
+            <h1 class="font-['Press_Start_2P'] text-7xl md:text-8xl lg:text-9xl cyber-glow mb-4 relative z-10">
+                 ONL<span style="display: inline-block; transform: translateX(-0.3em);">Y</span> KAMZ
+            </h1>
+            <!-- Glitch Layer 1 -->
+            <h1 class="font-['Press_Start_2P'] text-7xl md:text-8xl lg:text-9xl cyber-glow mb-4 glitch-layer glitch-1" aria-hidden="true">
+                ONL<span style="display: inline-block; transform: translateX(-0.3em);">Y</span> KAMZ
+            </h1>
+            <!-- Glitch Layer 2 -->
+            <h1 class="font-['Press_Start_2P'] text-7xl md:text-8xl lg:text-9xl cyber-glow mb-4 glitch-layer glitch-2" aria-hidden="true">
+                ONL<span style="display: inline-block; transform: translateX(-0.3em);">Y</span> KAMZ
+            </h1>
+        </div>
         <p class="font-['VT323'] text-3xl md:text-4xl lg:text-5xl cyber-gradient animate-pulse">
             // ENTER THE KAM REALM //
         </p>
@@ -230,16 +172,16 @@
             </h2>
             <div class="grid social-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- YouTube Link -->
-                <a href="https://youtube.com/@onlykamz7?si=45kwAjh25pIbuLvF" target="_blank" rel="noopener noreferrer" class="social-icon flex flex-col items-center justify-center p-4 rounded-lg bg-black bg-opacity-50 backdrop-blur-sm hover:bg-opacity-75 border border-cyan-400/20">
+                <a href="https://youtube.com/@onlykamz7?si=45kwAjh25pIbuLvF" target="\_blank" rel="noopener noreferrer" class="social-icon flex flex-col items-center justify-center p-4 rounded-lg bg-black bg-opacity-50 backdrop-blur-sm hover:bg-opacity-75 border border-cyan-400/20">
                     <svg class="w-20 h-20 mb-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#FF0000"/>
                         <path d="M10 15.5v-7l6 3.5-6 3.5z" fill="white"/>
                     </svg>
-                    <span class="font-['Press_Start_2P'] text-sm md:text-base text-white mt-2">YOUTUBE</span>
+                    <span class="font-['Press\_Start\_2P'] text-sm md:text-base text-white mt-2">YOUTUBE</span>
                 </a>
 
                 <!-- Instagram Link -->
-                <a href="https://www.instagram.com/onlykamz97?igsh=cm1mZGMwNzJwaDU2&utm_source=qr" target="_blank" rel="noopener noreferrer" class="social-icon flex flex-col items-center justify-center p-4 rounded-lg bg-black bg-opacity-50 backdrop-blur-sm hover:bg-opacity-75 border border-cyan-400/20">
+                <a href="https://www.instagram.com/onlykamz97?igsh=cm1mZGMwNzJwaDU2&utm_source=qr" target="\_blank" rel="noopener noreferrer" class="social-icon flex flex-col items-center justify-center p-4 rounded-lg bg-black bg-opacity-50 backdrop-blur-sm hover:bg-opacity-75 border border-cyan-400/20">
                     <svg class="w-20 h-20 mb-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
                             <radialGradient id="instaSpotlight" cx="30%" cy="107%" r="150%">
@@ -250,45 +192,156 @@
                                 <stop stop-color="#285AEB" stop-opacity="0.5" offset="90%"/>
                             </radialGradient>
                         </defs>
-                        <path d="M12 2c2.72 0 3.06.01 4.12.06 1.06.05 1.79.22 2.42.46.64.24 1.17.58 1.7 1.12.54.54.88 1.07 1.12 1.7.24.63.41 1.36.46 2.42.05 1.06.06 1.4.06 4.12s-.01 3.06-.06 4.12c-.05 1.06-.22 1.79-.46 2.42-.24.64-.58 1.17-1.12 1.7-.54.54-1.07.88-1.7 1.12-.63.24-1.36.41-2.42.46-1.06.05-1.4.06-4.12.06s-3.06-.01-4.12-.06c-1.06-.05-1.79-.22-2.42-.46-.64-.24-1.17-.58-1.7-1.12-.54-.54-.88-1.07-1.12-1.7-.24-.63-.41-1.36-.46-2.42C2.06 15.06 2.05 14.72 2.05 12s.01-3.06.06-4.12c.05-1.06.22-1.79.46-2.42.24-.64.58-1.17 1.12-1.7.54-.54 1.07-.88 1.7-1.12.63-.24 1.36-.41 2.42-.46C8.94 2.01 9.28 2 12 2zm0 1.8c-2.67 0-3 .01-4.05.06-1 .05-1.63.22-2.12.42-.53.2-.9.46-1.3.87-.4.4-.67.77-.87 1.3-.2.49-.37 1.12-.42 2.12-.05 1.05-.06 1.38-.06 4.05s.01 3 .06 4.05c.05 1 .22 1.63.42 2.12.2.53.46.9.87 1.3.4.4.77.67 1.3.87.49.2 1.12.37 2.12.42 1.05.05 1.38.06 4.05.06s3-.01 4.05-.06c1-.05 1.63-.22 2.12-.42.53-.2.9-.46 1.3-.87.4-.4.67-.77.87-1.3.2-.49.37-1.12.42-2.12.05-1.05.06-1.38.06-4.05s-.01-3-.06-4.05c-.05-1-.22-1.63-.42-2.12-.2-.53-.46-.9-.87-1.3-.4-.4-.77-.67-1.3-.87-.49-.2-1.12-.37-2.12-.42C15 3.81 14.67 3.8 12 3.8zm0 3.45a4.75 4.75 0 100 9.5 4.75 4.75 0 000-9.5zm0 8a3.25 3.25 0 110-6.5 3.25 3.25 0 010 6.5zm6.4-11.7a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z" fill="url(#instaSpotlight)"/>
+                        <path d="M12 2c2.72 0 3.06.01 4.12.06 1.06.05 1.79.22 2.42.46.64.24 1.17.58 1.7 1.12.54.54.88 1.07 1.12 1.7.24.63.41 1.36.46 2.42.05 1.06.06 1.4.06 4.12s-.01 3.06-.06 4.12c-.05 1.06-.22 1.79-.46 2.42-.24.64-.58 1.17-1.12 1.7-.54.54-1.07.88-1.7 1.12-.63.24-1.36.41-2.42.46-1.06.05-1.4.06-4.12.06s-3.06-.01-4.12-.06c-1.06-.05-1.79-.22-2.42-.46-.64-.24-1.17-.58-1.7-1.12-.54-.54-.88-1.07-1.12-1.7-.24-.63-.41-1.36-.46-2.42C2.06 15.06 2.05 14.72 2.05 12s.01-3.06.06-4.12c.05-1.06.22-1.79.46-2.42.24-.64.58-1.17 1.12-1.7.54-.54 1.07-.88 1.7-1.12.63-.24 1.36.41 2.42-.46C8.94 2.01 9.28 2 12 2zm0 1.8c-2.67 0-3 .01-4.05.06-1 .05-1.63.22-2.12.42-.53.2-.9.46-1.3.87-.4.4-.67.77-.87 1.3-.2.49-.37 1.12-.42 2.12-.05 1.05-.06 1.38-.06 4.05s.01 3 .06 4.05c.05 1 .22 1.63.42 2.12.2.53.46.9.87 1.3.4.4.77.67 1.3.87.49.2 1.12.37 2.12.42 1.05.05 1.38.06 4.05.06s3-.01 4.05-.06c1-.05 1.63-.22 2.12-.42.53-.2.9-.46 1.3-.87.4-.4.67-.77-.87-1.3.2-.49.37-1.12.42-2.12.05-1.05.06-1.38.06-4.05s-.01-3-.06-4.05c-.05-1-.22-1.63-.42-2.12-.2-.53-.46-.9-.87-1.3-.4-.4-.77-.67-1.3-.87-.49-.2-1.12-.37-2.12-.42C15 3.81 14.67 3.8 12 3.8zm0 3.45a4.75 4.75 0 100 9.5 4.75 4.75 0 000-9.5zm0 8a3.25 3.25 0 110-6.5 3.25 3.25 0 010 6.5zm6.4-11.7a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z" fill="url(#instaSpotlight)"/>
                     </svg>
-                    <span class="font-['Press_Start_2P'] text-sm md:text-base text-white mt-2">INSTAGRAM</span>
+                    <span class="font-['Press\_Start\_2P'] text-sm md:text-base text-white mt-2">INSTAGRAM</span>
                 </a>
 
                 <!-- X (Twitter) Link -->
-                <a href="https://x.com/lifeofkrayz?s=21" target="_blank" rel="noopener noreferrer" class="social-icon flex flex-col items-center justify-center p-4 rounded-lg bg-black bg-opacity-50 backdrop-blur-sm hover:bg-opacity-75 border border-cyan-400/20">
+                <a href="https://x.com/lifeofkrayz?s=21" target="\_blank" rel="noopener noreferrer" class="social-icon flex flex-col items-center justify-center p-4 rounded-lg bg-black bg-opacity-50 backdrop-blur-sm hover:bg-opacity-75 border border-cyan-400/20">
                     <svg viewBox="0 0 24 24" class="w-20 h-20 text-white mb-2">
                         <path fill="currentColor" d="M18.244 2.25h.442l-5.656 6.848L20.88 22H17.21l-4.225-5.018L7.094 22H6.606l6.23-7.55L3.63 2.25H7.3L12 8.414L18.244 2.25zM16.59 19.34L7.864 4.5H6.425L15.15 19.34h1.44z"/>
                     </svg>
-                    <span class="font-['Press_Start_2P'] text-sm md:text-base text-white mt-2">X-FEED</span>
+                    <span class="font-['Press\_Start\_2P'] text-sm md:text-base text-white mt-2">X-FEED</span>
                 </a>
 
                 <!-- OnlyFans Link -->
-                <a href="https://youtu.be/dQw4w9WgXcQ?si=hZCDYiObDQ4Vt7Ev" target="_blank" rel="noopener noreferrer" class="social-icon flex flex-col items-center justify-center p-4 rounded-lg bg-black bg-opacity-50 backdrop-blur-sm hover:bg-opacity-75 border border-cyan-400/20">
+                <a href="https://youtu.be/dQw4w9WgXcQ?si=hZCDYiObDQ4Vt7Ev" target="\_blank" rel="noopener noreferrer" class="social-icon flex flex-col items-center justify-center p-4 rounded-lg bg-black bg-opacity-50 backdrop-blur-sm hover:bg-opacity-75 border border-cyan-400/20">
                     <svg class="w-20 h-20 text-cyan-400 mb-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="currentColor"/>
                         <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z" fill="currentColor"/>
                         <circle cx="12" cy="12" r="2" fill="currentColor"/>
                     </svg>
-                    <span class="font-['Press_Start_2P'] text-sm md:text-base text-white mt-2">ONLYFANS</span>
+                    <span class="font-['Press\_Start\_2P'] text-sm md:text-base text-white mt-2">ONLY FANS</span>
                 </a>
             </div>
         </section>
 
         <section class="mt-12">
-            <button class="btn-cyber font-['Press_Start_2P']">
-                JACK IN
-            </button>
+            <div class="relative inline-block">
+                <!-- Main Clickable Button Text -->
+                <button class="font-['Press_Start_2P'] text-3xl md:text-4xl cyber-glow relative z-10 bg-transparent border-none cursor-pointer p-2">
+                    JACK IN
+                </button>
+                <!-- Glitch Layer 1 -->
+                <div class="font-['Press_Start_2P'] text-3xl md:text-4xl cyber-glow glitch-layer glitch-1" aria-hidden="true">
+                    JACK IN
+                </div>
+                <!-- Glitch Layer 2 -->
+                <div class="font-['Press_Start_2P'] text-3xl md:text-4xl cyber-glow glitch-layer glitch-2" aria-hidden="true">
+                    JACK IN
+                </div>
+            </div>
         </section>
     </main>
 
     <footer class="mt-auto pt-8 text-center text-gray-500 text-sm">
         <p>&copy; 2025 ONLYKAMZ. ALL RIGHTS RESERVED // DATA STREAM ESTABLISHED</p>
     </footer>
+
+    <script>
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let particlesArray;
+
+        function setCanvasSize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        // Particle class
+        class Particle {
+            constructor(x, y, directionX, directionY, size, color) {
+                this.x = x;
+                this.y = y;
+                this.directionX = directionX;
+                this.directionY = directionY;
+                this.size = size;
+                this.color = color;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+
+            update() {
+                if (this.x > canvas.width || this.x < 0) {
+                    this.directionX = -this.directionX;
+                }
+                if (this.y > canvas.height || this.y < 0) {
+                    this.directionY = -this.directionY;
+                }
+                this.x += this.directionX;
+                this.y += this.directionY;
+                this.draw();
+            }
+        }
+
+        // Create particle array
+        function init() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let directionX = (Math.random() * 0.4) - 0.2;
+                let directionY = (Math.random() * 0.4) - 0.2;
+                // Cyberpunk colors: neon green and magenta/pink
+                let color = Math.random() > 0.5 ? '#00f0c0' : '#f000f0';
+                particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+            }
+        }
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, innerWidth, innerHeight);
+
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+            }
+            connect();
+        }
+
+        // Connect particles with lines
+        function connect() {
+            let opacityValue = 1;
+            for (let a = 0; a < particlesArray.length; a++) {
+                for (let b = a; b < particlesArray.length; b++) {
+                    let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) +
+                        ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                    if (distance < (canvas.width / 7) * (canvas.height / 7)) {
+                        opacityValue = 1 - (distance / 20000);
+                        let dx = particlesArray[a].x - particlesArray[b].x;
+                        let dy = particlesArray[a].y - particlesArray[b].y;
+                        let lineColor = distance < 10000 ? '#00f0c0' : '#f000f0';
+                        ctx.strokeStyle = `rgba(${lineColor === '#00f0c0' ? '0,240,192' : '240,0,240'}, ${opacityValue})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        // Event listeners
+        window.addEventListener('resize', () => {
+            setCanvasSize();
+            init();
+        });
+
+        // Initial setup
+        setCanvasSize();
+        init();
+        animate();
+    </script>
 </body>
 </html>
-
-
-
-
 
