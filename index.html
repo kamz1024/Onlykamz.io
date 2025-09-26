@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnlyKamz - Cyberpunk Hub</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Cyberpunk Aesthetic -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'VT323', monospace;
+            background-color: #0d0c1d; /* Dark bluish-purple */
+            color: #00f0c0; /* Neon green */
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        .cyber-glow {
+            text-shadow: 0 0 5px #00f0c0, 0 0 10px #00f0c0, 0 0 15px #00f0c0, 0 0 20px #00f0c0;
+            animation: pulse-glow 2s infinite alternate;
+        }
+        .cyber-gradient {
+            background: linear-gradient(45deg, #00f0c0, #f000f0); /* Neon green to neon pink/purple */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .btn-cyber {
+            @apply relative overflow-hidden rounded-lg px-6 py-3 text-lg font-bold transition-all duration-300 ease-in-out;
+            background: linear-gradient(45deg, #00f0c0, #f000f0);
+            color: #0d0c1d;
+            box-shadow: 0 0 10px rgba(0, 240, 192, 0.7), 0 0 20px rgba(240, 0, 240, 0.7);
+        }
+        .btn-cyber::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: skewX(-30deg);
+            transition: all 0.7s ease;
+        }
+        .btn-cyber:hover::before {
+            left: 100%;
+        }
+        .social-icon {
+            @apply transition-transform duration-300 ease-in-out hover:scale-110 relative;
+            filter: drop-shadow(0 0 5px rgba(0, 240, 192, 0.5));
+        }
+        .social-icon:hover {
+            filter: drop-shadow(0 0 10px rgba(240, 0, 240, 0.8));
+        }
+
+        /* Keyframe animations */
+        @keyframes pulse-glow {
+            from {
+                text-shadow: 0 0 5px #00f0c0, 0 0 10px #00f0c0, 0 0 15px #00f0c0;
+            }
+            to {
+                text-shadow: 0 0 10px #00f0c0, 0 0 20px #00f0c0, 0 0 30px #00f0c0;
+            }
+        }
+
+        @keyframes scanline {
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 0% 100%;
+            }
+        }
+
+        /* Glitch effect on header */
+        .glitch {
+            position: relative;
+        }
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0d0c1d;
+        }
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #f000f0; /* Pink shift */
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        }
+        .glitch::after {
+            left: -2px;
+            text-shadow: 2px 0 #00f0c0; /* Green shift */
+            animation: glitch-anim-2 2s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim-1 {
+            0% { clip: rect(24px, 9999px, 83px, 0) }
+            5% { clip: rect(69px, 9999px, 86px, 0) }
+            10% { clip: rect(10px, 9999px, 20px, 0) }
+            15% { clip: rect(74px, 9999px, 99px, 0) }
+            20% { clip: rect(44px, 9999px, 12px, 0) }
+            25% { clip: rect(80px, 9999px, 26px, 0) }
+            30% { clip: rect(32px, 9999px, 47px, 0) }
+            35% { clip: rect(93px, 9999px, 60px, 0) }
+            40% { clip: rect(62px, 9999px, 75px, 0) }
+            45% { clip: rect(19px, 9999px, 46px, 0) }
+            50% { clip: rect(78px, 9999px, 90px, 0) }
+            55% { clip: rect(51px, 9999px, 67px, 0) }
+            60% { clip: rect(88px, 9999px, 15px, 0) }
+            65% { clip: rect(5px, 9999px, 28px, 0) }
+            70% { clip: rect(67px, 9999px, 94px, 0) }
+            75% { clip: rect(39px, 9999px, 8px, 0) }
+            80% { clip: rect(12px, 9999px, 71px, 0) }
+            85% { clip: rect(55px, 9999px, 33px, 0) }
+            90% { clip: rect(85px, 9999px, 70px, 0) }
+            95% { clip: rect(29px, 9999px, 49px, 0) }
+            100% { clip: rect(48px, 9999px, 100px, 0) }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(60px, 9999px, 10px, 0) }
+            5% { clip: rect(33px, 9999px, 70px, 0) }
+            10% { clip: rect(94px, 9999px, 5px, 0) }
+            15% { clip: rect(15px, 9999px, 88px, 0) }
+            20% { clip: rect(67px, 9999px, 51px, 0) }
+            25% { clip: rect(90px, 9999px, 78px, 0) }
+            30% { clip: rect(46px, 9999px, 19px, 0) }
+            35% { clip: rect(75px, 9999px, 62px, 0) }
+            40% { clip: rect(60px, 9999px, 93px, 0) }
+            45% { clip: rect(47px, 9999px, 32px, 0) }
+            50% { clip: rect(26px, 9999px, 80px, 0) }
+            55% { clip: rect(12px, 9999px, 44px, 0) }
+            60% { clip: rect(99px, 9999px, 74px, 0) }
+            65% { clip: rect(20px, 9999px, 10px, 0) }
+            70% { clip: rect(86px, 9999px, 69px, 0) }
+            75% { clip: rect(83px, 9999px, 24px, 0) }
+            80% { clip: rect(100px, 9999px, 48px, 0) }
+            85% { clip: rect(49px, 9999px, 29px, 0) }
+            90% { clip: rect(70px, 9999px, 85px, 0) }
+            95% { clip: rect(33px, 9999px, 55px, 0) }
+            100% { clip: rect(71px, 9999px, 12px, 0) }
+        }
+
+        /* Background grid/pattern */
+        .cyber-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(0deg, transparent 24%, rgba(0, 240, 192, 0.05) 25%, rgba(0, 240, 192, 0.05) 26%, transparent 27%, transparent 74%, rgba(240, 0, 240, 0.05) 75%, rgba(240, 0, 240, 0.05) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(0, 240, 192, 0.05) 25%, rgba(0, 240, 192, 0.05) 26%, transparent 27%, transparent 74%, rgba(240, 0, 240, 0.05) 75%, rgba(240, 0, 240, 0.05) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
+            opacity: 0.3;
+            z-index: -1;
+            animation: scanline 10s infinite linear;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .text-7xl {
+                font-size: 3.5rem; /* Smaller on mobile */
+            }
+            .text-3xl {
+                font-size: 1.5rem;
+            }
+            .social-grid {
+                grid-template-columns: 1fr; /* Stack vertically */
+            }
+            .btn-cyber {
+                width: 80%; /* Wider buttons on mobile */
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen justify-center items-center p-4">
+    <div class="cyber-grid"></div>
+
+    <header class="text-center mb-12">
+        <h1 class="font-['Press_Start_2P'] text-7xl md:text-8xl lg:text-9xl cyber-glow mb-4 relative glitch" data-text="ONLYKAMZ">
+            ONLYKAMZ
+        </h1>
+        <p class="font-['VT323'] text-3xl md:text-4xl lg:text-5xl cyber-gradient animate-pulse">
+            // ENTER THE NEON REALM //
+        </p>
+    </header>
+
+    <main class="w-full max-w-4xl text-center">
+        <section class="mb-12">
+            <h2 class="font-['Press_Start_2P'] text-xl md:text-2xl lg:text-3xl cyber-glow mb-8">
+                CONNECT > ENGAGE > TRANSMIT
+            </h2>
+            <div class="grid social-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- YouTube Link -->
+                <a href="https://youtube.com/@onlykamz7?si=45kwAjh25pIbuLvF" target="_blank" rel="noopener noreferrer" class                   lass="social-icon flex flex-col items-center justify-center p-4 rounded-lg bg-gray-900 bg-opacity-70 backdrop-blur-sm hover:bg-opacity-90">
+                    <svg viewBox="0 0 24 24" class="w-20 h-20 text-red-600 mb-2">
+                        <path fill="currentColor" d="M21.58,7.12a2.67,2.67,0,0,0-1.89-1.89C18.67,5,12,5,12,5s-6.67,0-7.69.23A2.67,2.67,0,0,0,2.42,7.12,2.83,2.83,0,0,0,2.23,12a2.83,2.83,0,0,0,.19,4.88,2.67,2.67,0,0,0,1.89,1.89C5.33,19,12,19,12,19s6.67,0,7.69-.23a2.67,2.67,0,0,0,1.89-1.89A2.83,2.83,0,0,0,21.77,12,2.83,2.83,0,0,0,21.58,7.12ZM9.71,15.5l5.09-3.5L9.71,8.5Z"/>
+                    </svg>
+                    <span class="font-['Press_Start_2P'] text-sm md:text-base text-white mt-2">YOUTUBE</span>
+                </a>
+
+                <!-- Instagram Link -->
+                <a href="https://www.instagram.com/onlykamz97?igsh=cm1mZGMwNzJwaDU2&utm_source=qr" target="_blank" rel="noopener noreferrer" class="social-icon flex flex-col items-center justify-center p-4 rounded-lg bg-gray-900 bg-opacity-70 backdrop-blur-sm hover:bg-opacity-90">
+                    <svg viewBox="0 0 24 24" class="w-20 h-20 text-pink-500 mb-2">
+                        <path fill="currentColor" d="M7.5 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9zm0-7.5a3 3 0 1 1 0 6 3 3 0 0 1 0-6zM16.5 2h-9A7.5 7.5 0 0 0 0 9.5v9A7.5 7.5 0 0 0 7.5 26h9A7.5 7.5 0 0 0 24 18.5v-9A7.5 7.5 0 0 0 16.5 2zm6 16.5a6 6 0 0 1-6 6h-9a6 6 0 0 1-6-6v-9a6 6 0 0 1 6-6h9a6 6 0 0 1 6 6v9zM19.5 7.25a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5z"/>
+                    </svg>
+                    <span class="font-['Press_Start_2P'] text-sm md:text-base text-white mt-2">INSTAGRAM</span>
+                </a>
+
+                <!-- X (Twitter) Link -->
+                <a href="https://x.com/lifeofkrayz?s=21" target="_blank" rel="noopener noreferrer" class="social-icon flex flex-col items-center justify-center p-4 rounded-lg bg-gray-900 bg-opacity-70 backdrop-blur-sm hover:bg-opacity-90">
+                    <svg viewBox="0 0 24 24" class="w-20 h-20 text-gray-300 mb-2">
+                        <path fill="currentColor" d="M18.244 2.25h.442l-5.656 6.848L20.88 22H17.21l-4.225-5.018L7.094 22H6.606l6.23-7.55L3.63 2.25H7.3L12 8.414L18.244 2.25zM16.59 19.34L7.864 4.5H6.425L15.15 19.34h1.44z"/>
+                    </svg>
+                    <span class="font-['Press_Start_2P'] text-sm md:text-base text-white mt-2">X-FEED</span>
+                </a>
+
+                <!-- OnlyFans Link (Note: This link is a YouTube video as per your input) -->
+                <a href="https://youtu.be/dQw4w9WgXcQ?si=hZCDYiObDQ4Vt7Ev" target="_blank" rel="noopener noreferrer" class="social-icon flex flex-col items-center justify-center p-4 rounded-lg bg-gray-900 bg-opacity-70 backdrop-blur-sm hover:bg-opacity-90">
+                    <!-- Generic 'Connect' icon or similar for OnlyFans, given the YouTube link provided -->
+                    <svg viewBox="0 0 24 24" class="w-20 h-20 text-orange-400 mb-2">
+                        <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15h2v-6h-2v6zm3-11v2h-2v-2h2z"/>
+                    </svg>
+                    <span class="font-['Press_Start_2P'] text-sm md:text-base text-white mt-2">ONLYFans</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="mt-12">
+            <button class="btn-cyber font-['Press_Start_2P']">
+                INITIATE PROTOCOL
+            </button>
+        </section>
+    </main>
+
+    <footer class="mt-auto pt-8 text-center text-gray-500 text-sm">
+        <p>&copy; 2025 ONLYKAMZ. ALL RIGHTS RESERVED // DATA STREAM ESTABLISHED</p>
+    </footer>
+</body>
+</html>
