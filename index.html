@@ -15,6 +15,51 @@
             color: #00f0c0; /* Neon green */
             overflow-x: hidden; /* Prevent horizontal scroll */
         }
+        
+        /* New Synthwave/Wave Rider Background */
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+            background: #0d0c1d;
+        }
+
+        .sun {
+            position: absolute;
+            bottom: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150vw;
+            height: 150vw;
+            background: radial-gradient(circle, rgba(240, 0, 240, 0.5) 0%, rgba(240, 0, 240, 0) 60%);
+            border-radius: 50%;
+        }
+
+        .grid-lines {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to top, 
+                transparent, 
+                rgba(0, 240, 192, 0.2) 1px, 
+                transparent 1px, 
+                transparent 10px
+            );
+            background-size: 100% 20px;
+            animation: move-grid 10s linear infinite;
+        }
+
+        @keyframes move-grid {
+            from { background-position-y: 0; }
+            to { background-position-y: -200px; }
+        }
+
         .cyber-glow {
             text-shadow: 0 0 5px #00f0c0, 0 0 10px #00f0c0, 0 0 15px #00f0c0, 0 0 20px #00f0c0;
             animation: pulse-glow 2s infinite alternate;
@@ -26,7 +71,7 @@
         }
         .btn-cyber {
             @apply relative overflow-hidden rounded-lg px-6 py-3 text-lg font-bold transition-all duration-300 ease-in-out;
-            background: linear-gradient(45deg, #00f0c0, #f000f0);
+            background: linear-gradient(45deg, #f000f0, #00f0c0);
             color: #0d0c1d;
             box-shadow: 0 0 10px rgba(0, 240, 192, 0.7), 0 0 20px rgba(240, 0, 240, 0.7);
         }
@@ -74,6 +119,7 @@
         /* Glitch effect on header */
         .glitch {
             position: relative;
+            letter-spacing: -0.05em; /* Tightens character spacing to fix kerning issues */
         }
         .glitch::before,
         .glitch::after {
@@ -84,6 +130,7 @@
             width: 100%;
             height: 100%;
             background: #0d0c1d;
+            background: transparent;
         }
         .glitch::before {
             left: 2px;
@@ -142,23 +189,7 @@
             95% { clip: rect(33px, 9999px, 55px, 0) }
             100% { clip: rect(71px, 9999px, 12px, 0) }
         }
-
-        /* Background grid/pattern */
-        .cyber-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image:
-                linear-gradient(0deg, transparent 24%, rgba(0, 240, 192, 0.05) 25%, rgba(0, 240, 192, 0.05) 26%, transparent 27%, transparent 74%, rgba(240, 0, 240, 0.05) 75%, rgba(240, 0, 240, 0.05) 76%, transparent 77%, transparent),
-                linear-gradient(90deg, transparent 24%, rgba(0, 240, 192, 0.05) 25%, rgba(0, 240, 192, 0.05) 26%, transparent 27%, transparent 74%, rgba(240, 0, 240, 0.05) 75%, rgba(240, 0, 240, 0.05) 76%, transparent 77%, transparent);
-            background-size: 50px 50px;
-            opacity: 0.3;
-            z-index: -1;
-            animation: scanline 10s infinite linear;
-        }
-
+        
         /* Mobile adjustments */
         @media (max-width: 768px) {
             .text-7xl {
@@ -178,14 +209,17 @@
     </style>
 </head>
 <body class="flex flex-col min-h-screen justify-center items-center p-4">
-    <div class="cyber-grid"></div>
+    <div class="background-container">
+        <div class="sun"></div>
+        <div class="grid-lines"></div>
+    </div>
 
     <header class="text-center mb-12">
-        <h1 class="font-['Press_Start_2P'] text-7xl md:text-8xl lg:text-9xl cyber-glow mb-4 relative glitch" data-text="ONLYKAMZ">
-            ONLYKAMZ
+        <h1 class="font-['Press_Start_2P'] text-7xl md:text-8xl lg:text-9xl cyber-glow mb-4 relative glitch" data-text="ONLY KAMZ">
+            ONLY KAMZ
         </h1>
         <p class="font-['VT323'] text-3xl md:text-4xl lg:text-5xl cyber-gradient animate-pulse">
-            // ENTER THE NEON REALM //
+            // ENTER THE KAM REALM //
         </p>
     </header>
 
@@ -196,43 +230,54 @@
             </h2>
             <div class="grid social-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- YouTube Link -->
-                <a href="https://youtube.com/@onlykamz7?si=45kwAjh25pIbuLvF" target="_blank" rel="noopener noreferrer" class                   lass="social-icon flex flex-col items-center justify-center p-4 rounded-lg bg-gray-900 bg-opacity-70 backdrop-blur-sm hover:bg-opacity-90">
-                    <svg viewBox="0 0 24 24" class="w-20 h-20 text-red-600 mb-2">
-                        <path fill="currentColor" d="M21.58,7.12a2.67,2.67,0,0,0-1.89-1.89C18.67,5,12,5,12,5s-6.67,0-7.69.23A2.67,2.67,0,0,0,2.42,7.12,2.83,2.83,0,0,0,2.23,12a2.83,2.83,0,0,0,.19,4.88,2.67,2.67,0,0,0,1.89,1.89C5.33,19,12,19,12,19s6.67,0,7.69-.23a2.67,2.67,0,0,0,1.89-1.89A2.83,2.83,0,0,0,21.77,12,2.83,2.83,0,0,0,21.58,7.12ZM9.71,15.5l5.09-3.5L9.71,8.5Z"/>
+                <a href="https://youtube.com/@onlykamz7?si=45kwAjh25pIbuLvF" target="_blank" rel="noopener noreferrer" class="social-icon flex flex-col items-center justify-center p-4 rounded-lg bg-black bg-opacity-50 backdrop-blur-sm hover:bg-opacity-75 border border-cyan-400/20">
+                    <svg class="w-20 h-20 mb-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#FF0000"/>
+                        <path d="M10 15.5v-7l6 3.5-6 3.5z" fill="white"/>
                     </svg>
                     <span class="font-['Press_Start_2P'] text-sm md:text-base text-white mt-2">YOUTUBE</span>
                 </a>
 
                 <!-- Instagram Link -->
-                <a href="https://www.instagram.com/onlykamz97?igsh=cm1mZGMwNzJwaDU2&utm_source=qr" target="_blank" rel="noopener noreferrer" class="social-icon flex flex-col items-center justify-center p-4 rounded-lg bg-gray-900 bg-opacity-70 backdrop-blur-sm hover:bg-opacity-90">
-                    <svg viewBox="0 0 24 24" class="w-20 h-20 text-pink-500 mb-2">
-                        <path fill="currentColor" d="M7.5 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9zm0-7.5a3 3 0 1 1 0 6 3 3 0 0 1 0-6zM16.5 2h-9A7.5 7.5 0 0 0 0 9.5v9A7.5 7.5 0 0 0 7.5 26h9A7.5 7.5 0 0 0 24 18.5v-9A7.5 7.5 0 0 0 16.5 2zm6 16.5a6 6 0 0 1-6 6h-9a6 6 0 0 1-6-6v-9a6 6 0 0 1 6-6h9a6 6 0 0 1 6 6v9zM19.5 7.25a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5z"/>
+                <a href="https://www.instagram.com/onlykamz97?igsh=cm1mZGMwNzJwaDU2&utm_source=qr" target="_blank" rel="noopener noreferrer" class="social-icon flex flex-col items-center justify-center p-4 rounded-lg bg-black bg-opacity-50 backdrop-blur-sm hover:bg-opacity-75 border border-cyan-400/20">
+                    <svg class="w-20 h-20 mb-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <radialGradient id="instaSpotlight" cx="30%" cy="107%" r="150%">
+                                <stop stop-color="#fdf497" stop-opacity="0.9" offset="0%"/>
+                                <stop stop-color="#fdf497" stop-opacity="0.8" offset="5%"/>
+                                <stop stop-color="#fd5949" stop-opacity="0.7" offset="45%"/>
+                                <stop stop-color="#d6249f" stop-opacity="0.6" offset="60%"/>
+                                <stop stop-color="#285AEB" stop-opacity="0.5" offset="90%"/>
+                            </radialGradient>
+                        </defs>
+                        <path d="M12 2c2.72 0 3.06.01 4.12.06 1.06.05 1.79.22 2.42.46.64.24 1.17.58 1.7 1.12.54.54.88 1.07 1.12 1.7.24.63.41 1.36.46 2.42.05 1.06.06 1.4.06 4.12s-.01 3.06-.06 4.12c-.05 1.06-.22 1.79-.46 2.42-.24.64-.58 1.17-1.12 1.7-.54.54-1.07.88-1.7 1.12-.63.24-1.36.41-2.42.46-1.06.05-1.4.06-4.12.06s-3.06-.01-4.12-.06c-1.06-.05-1.79-.22-2.42-.46-.64-.24-1.17-.58-1.7-1.12-.54-.54-.88-1.07-1.12-1.7-.24-.63-.41-1.36-.46-2.42C2.06 15.06 2.05 14.72 2.05 12s.01-3.06.06-4.12c.05-1.06.22-1.79.46-2.42.24-.64.58-1.17 1.12-1.7.54-.54 1.07-.88 1.7-1.12.63-.24 1.36-.41 2.42-.46C8.94 2.01 9.28 2 12 2zm0 1.8c-2.67 0-3 .01-4.05.06-1 .05-1.63.22-2.12.42-.53.2-.9.46-1.3.87-.4.4-.67.77-.87 1.3-.2.49-.37 1.12-.42 2.12-.05 1.05-.06 1.38-.06 4.05s.01 3 .06 4.05c.05 1 .22 1.63.42 2.12.2.53.46.9.87 1.3.4.4.77.67 1.3.87.49.2 1.12.37 2.12.42 1.05.05 1.38.06 4.05.06s3-.01 4.05-.06c1-.05 1.63-.22 2.12-.42.53-.2.9-.46 1.3-.87.4-.4.67-.77.87-1.3.2-.49.37-1.12.42-2.12.05-1.05.06-1.38.06-4.05s-.01-3-.06-4.05c-.05-1-.22-1.63-.42-2.12-.2-.53-.46-.9-.87-1.3-.4-.4-.77-.67-1.3-.87-.49-.2-1.12-.37-2.12-.42C15 3.81 14.67 3.8 12 3.8zm0 3.45a4.75 4.75 0 100 9.5 4.75 4.75 0 000-9.5zm0 8a3.25 3.25 0 110-6.5 3.25 3.25 0 010 6.5zm6.4-11.7a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z" fill="url(#instaSpotlight)"/>
                     </svg>
                     <span class="font-['Press_Start_2P'] text-sm md:text-base text-white mt-2">INSTAGRAM</span>
                 </a>
 
                 <!-- X (Twitter) Link -->
-                <a href="https://x.com/lifeofkrayz?s=21" target="_blank" rel="noopener noreferrer" class="social-icon flex flex-col items-center justify-center p-4 rounded-lg bg-gray-900 bg-opacity-70 backdrop-blur-sm hover:bg-opacity-90">
-                    <svg viewBox="0 0 24 24" class="w-20 h-20 text-gray-300 mb-2">
+                <a href="https://x.com/lifeofkrayz?s=21" target="_blank" rel="noopener noreferrer" class="social-icon flex flex-col items-center justify-center p-4 rounded-lg bg-black bg-opacity-50 backdrop-blur-sm hover:bg-opacity-75 border border-cyan-400/20">
+                    <svg viewBox="0 0 24 24" class="w-20 h-20 text-white mb-2">
                         <path fill="currentColor" d="M18.244 2.25h.442l-5.656 6.848L20.88 22H17.21l-4.225-5.018L7.094 22H6.606l6.23-7.55L3.63 2.25H7.3L12 8.414L18.244 2.25zM16.59 19.34L7.864 4.5H6.425L15.15 19.34h1.44z"/>
                     </svg>
                     <span class="font-['Press_Start_2P'] text-sm md:text-base text-white mt-2">X-FEED</span>
                 </a>
 
-                <!-- OnlyFans Link (Note: This link is a YouTube video as per your input) -->
-                <a href="https://youtu.be/dQw4w9WgXcQ?si=hZCDYiObDQ4Vt7Ev" target="_blank" rel="noopener noreferrer" class="social-icon flex flex-col items-center justify-center p-4 rounded-lg bg-gray-900 bg-opacity-70 backdrop-blur-sm hover:bg-opacity-90">
-                    <!-- Generic 'Connect' icon or similar for OnlyFans, given the YouTube link provided -->
-                    <svg viewBox="0 0 24 24" class="w-20 h-20 text-orange-400 mb-2">
-                        <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15h2v-6h-2v6zm3-11v2h-2v-2h2z"/>
+                <!-- OnlyFans Link -->
+                <a href="https://youtu.be/dQw4w9WgXcQ?si=hZCDYiObDQ4Vt7Ev" target="_blank" rel="noopener noreferrer" class="social-icon flex flex-col items-center justify-center p-4 rounded-lg bg-black bg-opacity-50 backdrop-blur-sm hover:bg-opacity-75 border border-cyan-400/20">
+                    <svg class="w-20 h-20 text-cyan-400 mb-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="currentColor"/>
+                        <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z" fill="currentColor"/>
+                        <circle cx="12" cy="12" r="2" fill="currentColor"/>
                     </svg>
-                    <span class="font-['Press_Start_2P'] text-sm md:text-base text-white mt-2">ONLYFans</span>
+                    <span class="font-['Press_Start_2P'] text-sm md:text-base text-white mt-2">ONLYFANS</span>
                 </a>
             </div>
         </section>
 
         <section class="mt-12">
             <button class="btn-cyber font-['Press_Start_2P']">
-                INITIATE PROTOCOL
+                JACK IN
             </button>
         </section>
     </main>
@@ -242,3 +287,8 @@
     </footer>
 </body>
 </html>
+
+
+
+
+
