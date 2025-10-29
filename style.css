@@ -1,0 +1,106 @@
+/* Reset basic styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and background setup */
+body {
+    background-color: #121212;
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    line-height: 1.6;
+}
+
+/* Header styling */
+header {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #222;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.title {
+    font-size: 4rem;
+    color: #00ff99;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99;
+}
+
+.tagline {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-top: 10px;
+    font-weight: 300;
+}
+
+/* Social Links Section */
+.social-links {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.social-item {
+    margin: 20px;
+    position: relative;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 12px;
+    padding: 20px;
+    width: 200px;
+    height: 200px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 255, 153, 0.7);
+    text-decoration: none;
+    color: #00ff99;
+    font-size: 1.25rem;
+}
+
+.social-icon img {
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(0, 255, 153, 0.8);
+}
+
+.social-icon:active {
+    transform: scale(0.9);
+}
+
+/* Footer styling */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #222;
+    margin-top: 50px;
+}
+
+footer p {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Animation */
+@keyframes glow {
+    0% { text-shadow: 0 0 5px #00ff99, 0 0 10px #00ff99; }
+    50% { text-shadow: 0 0 15px #00ff99, 0 0 30px #00ff99; }
+    100% { text-shadow: 0 0 5px #00ff99, 0 0 10px #00ff99; }
+}
+
+.title {
+    animation: glow 1.5s ease-in-out infinite alternate;
+}
