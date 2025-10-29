@@ -1,12 +1,12 @@
-// Simple JavaScript for scroll animation or other effects (e.g., page interaction)
-document.addEventListener('DOMContentLoaded', function () {
-    const socialLinks = document.querySelectorAll('.social-item');
-
-    // Animation on page load
-    socialLinks.forEach((link, index) => {
-        setTimeout(() => {
-            link.style.opacity = 1;
-            link.style.transform = 'translateY(0)';
-        }, index * 200);
-    });
+// Soft floating animation for social cards
+document.querySelectorAll(".card").forEach((card) => {
+  card.addEventListener("mousemove", (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.1), rgba(30,30,30,0.8))`;
+  });
+  card.addEventListener("mouseleave", () => {
+    card.style.background = "rgba(30,30,30,0.8)";
+  });
 });
