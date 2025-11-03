@@ -1,364 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-g">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OnlyKamz - Cyberpunk Nexus</title>
-    <!-- Tailwind CSS CDN --><script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts - Rajdhani for cyberpunk feel, Inter for readability --><link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Custom CSS for Intense Cyberpunk Aesthetics */
-        :root {
-            --neon-blue: #00e0ff;
-            --neon-pink: #ff00c1;
-            --neon-green: #00ff88;
-            --neon-yellow: #fff200;
-            --dark-bg: #03000b; /* Even darker base */
-            --mid-bg: #0f001c;
-            --light-text: #e0e0e0;
-            --alt-text: #c0c0d0;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--light-text);
-            overflow: hidden; /* Control background layers */
-            position: relative;
-            display: flex; /* Ensure main content is centered */
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
-        
-        /* Main content wrapper to ensure proper centering and scroll */
-        .main-content-wrapper {
-            max-height: 100vh; /* Limit height to viewport */
-            overflow-y: auto; /* Enable vertical scroll for content */
-            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-            padding: 1rem; /* Padding for scrollable area */
-            box-sizing: border-box; /* Include padding in height */
-            position: relative; /* Ensure content is above background effects */
-            z-index: 100; /* Higher than background layers */
-            width: 100%; /* Take full width */
-            display: flex; /* Flex container for centering */
-            align-items: center; /* Center vertically */
-            justify-content: center; /* Center horizontally */
-        }
-
-        /* Glitch effect for title */
-        @keyframes glitch-effect {
-            0% { text-shadow: 2px 2px var(--neon-blue), -2px -2px var(--neon-pink); transform: skew(0deg); }
-            25% { text-shadow: -2px -2px var(--neon-green), 2px 2px var(--neon-yellow); transform: skew(5deg); }
-            50% { text-shadow: 2px -2px var(--neon-pink), -2px 2px var(--neon-blue); transform: skew(-5deg); }
-            75% { text-shadow: -2px 2px var(--neon-yellow), 2px -2px var(--neon-green); transform: skew(2deg); }
-            100% { text-shadow: 2px 2px var(--neon-blue), -2px -2px var(--neon-pink); transform: skew(0deg); }
-        }
-
-        /* Subtle flicker for subtitles/handles */
-        @keyframes subtle-flicker {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.9; }
-        }
-
-        /* --- Full-page Animated Background --- */
-        .animated-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            background: radial-gradient(circle at top left, var(--mid-bg) 0%, var(--dark-bg) 70%); /* Base gradient */
-        }
-
-        .animated-background::before,
-        .animated-background::after {
-            content: '';
-            position: absolute;
-            background: linear-gradient(
-                45deg,
-                rgba(0, 224, 255, 0.4) 0%, /* Neon blue */
-                rgba(255, 0, 193, 0.4) 33%, /* Neon pink */
-                rgba(0, 255, 136, 0.4) 66%, /* Neon green */
-                rgba(255, 242, 0, 0.4) 100% /* Neon yellow */
-            );
-            filter: blur(80px); /* Soft glow */
-            opacity: 0.6;
-            animation: move-bg 30s linear infinite alternate;
-        }
-
-        .animated-background::before {
-            width: 150vw;
-            height: 150vh;
-            top: -50%;
-            left: -50%;
-            transform-origin: 0 0;
-            animation: move-bg 30s linear infinite alternate, rotate-bg 60s linear infinite;
-        }
-
-        .animated-background::after {
-            width: 120vw;
-            height: 120vh;
-            bottom: -30%;
-            right: -30%;
-            transform-origin: 100% 100%;
-            animation: move-bg 25s linear infinite reverse alternate, rotate-bg 50s linear infinite reverse;
-        }
-
-        @keyframes move-bg {
-            0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(10vw, 10vh) scale(1.1); }
-            100% { transform: translate(0, 0) scale(1); }
-        }
-
-        @keyframes rotate-bg {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* --- END Full-page Animated Background --- */
-
-        /* Hero Title */
-        .hero-title {
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 700;
-            font-size: 4.5rem; /* Larger title */
-            letter-spacing: 0.25em; /* More spacing */
-            color: white;
-            animation: glitch-effect 1.8s infinite alternate; /* Faster, more aggressive glitch */
-            text-transform: uppercase;
-            position: relative;
-            margin-bottom: 0.75rem;
-            line-height: 1;
-            text-align: center; /* Ensure title is centered */
-            width: 100%; /* Occupy full width for centering */
-        }
-        @media (min-width: 768px) {
-            .hero-title {
-                font-size: 7rem; /* Even larger on desktop */
-            }
-        }
-        .hero-subtitle {
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 400;
-            font-size: 1.5rem; /* Larger subtitle */
-            letter-spacing: 0.15em;
-            color: var(--neon-green); /* Changed to neon green */
-            text-shadow: 0 0 8px var(--neon-pink); /* More intense shadow */
-            animation: subtle-flicker 3s infinite alternate; /* Faster flicker */
-            margin-top: -0.5rem; /* Pull closer to title */
-            text-align: center; /* Ensure subtitle is centered */
-            width: 100%; /* Occupy full width for centering */
-        }
-
-        /* Cyber Link Styling */
-        .cyber-link {
-            background-color: rgba(0, 0, 0, 0.6); /* More transparent for background visibility */
-            border: 2px solid var(--neon-blue); /* Thicker border */
-            border-radius: 12px; /* Slightly more rounded */
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother, more defined transition */
-            transform: perspective(1px) translateZ(0); /* Force GPU accel */
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 0 10px rgba(0, 224, 255, 0.4), 0 0 20px rgba(255, 0, 193, 0.2) inset; /* Dual glow effect */
-            backdrop-filter: blur(4px) brightness(1.2); /* More intense blur and brightness */
-            transform-origin: center;
-            display: flex; /* Use flexbox for inner content alignment */
-            align-items: center; /* Center items vertically */
-            justify-content: flex-start; /* Align content to start */
-            text-align: left; /* Default text alignment for content */
-        }
-        
-        .cyber-link:hover {
-            border-color: var(--neon-green); /* Change border color on hover */
-            background-color: rgba(0, 0, 0, 0.8); /* Darker on hover */
-            transform: scale(1.04) translateY(-5px); /* More pronounced lift */
-            box-shadow: 0 0 20px var(--neon-pink), 0 0 35px var(--neon-green) inset, 0 0 50px rgba(255, 242, 0, 0.3); /* Multi-color, multi-intensity glow */
-            animation: none; /* Remove pulse, rely on transition for immediate feedback */
-            outline: 2px solid var(--neon-yellow); /* Outer glow on hover */
-            outline-offset: 3px;
-        }
-
-        .cyber-link-content {
-            display: flex;
-            align-items: center;
-            padding: 1.25rem 2rem; /* More padding */
-            position: relative;
-            z-index: 1;
-            width: 100%; /* Ensure content takes full width of link */
-        }
-
-        /* Styling for the new <img> logos */
-        .cyber-link .icon {
-            width: 56px; /* Even larger icons */
-            height: 56px;
-            object-fit: contain;
-            filter: drop-shadow(0 0 8px var(--neon-blue)); /* Stronger initial drop shadow */
-            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            margin-right: 2rem; /* More space */
-            flex-shrink: 0;
-        }
-        
-        .cyber-link:hover .icon {
-            transform: scale(1.15) rotate(5deg); /* More dynamic hover for icon */
-            filter: drop-shadow(0 0 15px var(--neon-pink)) brightness(1.3); /* Intense pink glow, brighter */
-        }
-
-        /* Container for text within link, to allow proper centering of both lines */
-        .platform-text-container {
-            flex-grow: 1; /* Allow text container to take available space */
-            display: flex;
-            flex-direction: column;
-            justify-content: center; /* Center vertically if space allows */
-            align-items: center; /* This centers the text horizontally */
-            text-align: center; /* Fallback for older browsers */
-        }
-
-        .platform-name {
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 700; /* Bolder */
-            font-size: 1.6rem; /* Even larger text */
-            color: var(--light-text);
-            letter-spacing: 0.1em;
-            text-shadow: 0 0 6px var(--neon-blue); /* Stronger initial text shadow */
-            transition: color 0.3s ease-out, text-shadow 0.3s ease-out;
-            line-height: 1.2; /* Adjust line height */
-        }
-
-        .platform-handle {
-            font-family: 'Inter', sans-serif;
-            font-weight: 400; /* Slightly bolder handle */
-            font-size: 1.05rem; /* Larger handle */
-            color: var(--neon-green); /* Changed to neon green */
-            animation: subtle-flicker 4s infinite alternate; /* Faster flicker */
-            transition: color 0.3s ease-out;
-            word-break: break-all;
-            text-shadow: 0 0 3px rgba(0, 255, 136, 0.5); /* Subtle shadow for handle */
-            line-height: 1.2; /* Adjust line height */
-        }
-
-        .cyber-link:hover .platform-name {
-            color: var(--neon-yellow); /* Yellow on hover */
-            text-shadow: 0 0 10px var(--neon-pink); /* Intense pink glow on hover */
-        }
-        .cyber-link:hover .platform-handle {
-            color: var(--neon-blue); /* Blue on hover */
-            text-shadow: 0 0 5px var(--neon-blue);
-        }
-
-        /* Decorative "energy flow" on hover - more impactful */
-        .cyber-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -120%; /* Start further left */
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.4), rgba(0, 224, 255, 0.4), transparent); /* Multi-color energy flow */
-            transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* Faster, more dynamic sweep */
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.8;
-        }
-
-        .cyber-link:hover::before {
-            left: 120%; /* Sweep further across */
-        }
-
-        /* Custom 18+ SVG styling */
-        .cyber-link .adult-icon-svg {
-            width: 56px;
-            height: 56px;
-            margin-right: 2rem;
-            flex-shrink: 0;
-            fill: none; /* No fill */
-            stroke: var(--neon-blue); /* Neon blue stroke */
-            stroke-width: 1.5;
-            filter: drop-shadow(0 0 6px var(--neon-blue));
-            transition: stroke 0.3s ease-out, filter 0.3s ease-out, transform 0.3s ease-out;
-        }
-        .cyber-link:hover .adult-icon-svg {
-            stroke: var(--neon-pink); /* Pink stroke on hover */
-            filter: drop-shadow(0 0 10px var(--neon-pink));
-            transform: scale(1.1); /* Scale on hover */
-        }
-        .cyber-link .adult-icon-svg text {
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 700;
-            font-size: 10px;
-            text-anchor: middle;
-            dominant-baseline: central;
-            fill: var(--light-text);
-            transition: fill 0.3s ease-out;
-        }
-        .cyber-link:hover .adult-icon-svg text {
-            fill: var(--neon-yellow); /* Yellow text on hover */
-        }
-    </style>
+    <title>OnlyKamz - Links</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Russo+One&display=swap" rel="stylesheet">
 </head>
-<body class="flex items-center justify-center min-h-screen">
+<body>
 
-    <!-- Full-page Animated Background --><div class="animated-background"></div>
+    <main class="container">
+        
+        <h1 class="glitch" data-text="OnlyKamz">OnlyKamz</h1>
+        
+        <p class="tagline">Content Creator | Digital Future</p>
 
-    <div class="main-content-wrapper w-full flex justify-center">
-        <main class="z-10 w-full max-w-xl mx-auto text-center relative py-8">
-            <!-- Header Title --><header class="mb-12 md:mb-16">
-                <h1 class="hero-title">OnlyKamz</h1>
-                <p class="hero-subtitle">[ Enter the World of Kam ]</p>
-            </header>
+        <nav class="link-grid">
+            <ul>
+                <li>
+                    <a href="https://youtube.com/@onlykamz97?si=45kwAjh25pIbuLvF" target="_blank" class="link-button">
+                        <img src="https://example.com/icons/youtube.svg" alt="YouTube Logo" class="icon">
+                        <span>Watch My Videos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.instagram.com/onlykamz97?igsh=cm1mZGMwNzJwaDU2&utm_source=qr" target="_blank" class="link-button">
+                        <img src="https://example.com/icons/instagram.svg" alt="Instagram Logo" class="icon">
+                        <span>Follow My Feed</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://x.com/lifeofkrayz?s=21" target="_blank" class="link-button">
+                        <img src="https://example.com/icons/x-logo.svg" alt="X Logo" class="icon">
+                        <span>See My Posts</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://onlyfans.com/USERNAME" target="_blank" class="link-button">
+                        <img src="https://example.com/icons/onlyfans.svg" alt="OnlyFans Logo" class="icon">
+                        <span>Exclusive Content</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
 
-            <!-- Links Container --><div class="space-y-6">
-
-                <!-- YouTube Link --><a href="https://youtube.com/@onlykamz97?si=45kwAjh25pIbuLvF" target="_blank" rel="noopener noreferrer" class="cyber-link block">
-                    <div class="cyber-link-content">
-                        <!-- Logo from CDN --><img class="icon" src="https://cdn.svgporn.com/logos/youtube-icon.svg" alt="YouTube Logo">
-                        <div class="platform-text-container">
-                            <span class="platform-name">YouTube</span>
-                            <p class="platform-handle">@onlykamz7</p>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Instagram Link --><a href="https://www.instagram.com/onlykamz97?igsh=cm1mZGMwNzJwaDU2&utm_source=qr" target="_blank" rel="noopener noreferrer" class="cyber-link block">
-                    <div class="cyber-link-content">
-                        <!-- Logo from CDN --><img class="icon" src="https://cdn.svgporn.com/logos/instagram-icon.svg" alt="Instagram Logo">
-                        <div class="platform-text-container">
-                            <span class="platform-name">Instagram</span>
-                            <p class="platform-handle">@onlykamz97</p>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Twitter Link --><a href="https://x.com/lifeofkrayz?s=21" target="_blank" rel="noopener noreferrer" class="cyber-link block">
-                    <div class="cyber-link-content">
-                        <!-- Logo from CDN (classic bird logo) --><img class="icon" src="https://cdn.svgporn.com/logos/twitter.svg" alt="Twitter Logo">
-                        <div class="platform-text-container">
-                            <span class="platform-name">Twitter</span>
-                            <p class="platform-handle">@lifeofkrayz</p>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- OnlyFans Link --><a href="https://youtu.be/dQw4w9WgXcQ?si=hZCDYiObDQ4Vt7Ev" target="_blank" rel="noopener noreferrer" class="cyber-link block">
-                    <div class="cyber-link-content">
-                        <!-- Custom styled 18+ icon --><svg class="adult-icon-svg icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <title>Adult Icon</title>
-                            <circle cx="12" cy="12" r="10.5"/>
-                            <text x="12" y="12">18+</text>
-                        </svg>
-                        <div class="platform-text-container">
-                            <span class="platform-name">OnlyFans</span>
-                            <p class="platform-handle">[ EXCLUSIVE CONTENT ]</p>
-                        </div>
-                    </div>
-                </a>
-
-            </div>
-        </main>
-    </div>
+    </main>
 </body>
 </html>
