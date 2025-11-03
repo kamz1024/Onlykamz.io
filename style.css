@@ -1,0 +1,193 @@
+/* --- Root Variables --- */
+:root {
+    --bg-color: #0a001a; /* Dark Desaturated Purple */
+    --neon-pink: #ff00ff;
+    --neon-cyan: #00ffff;
+    --text-color: #f0f0f0;
+    --font-heading: 'Russo One', sans-serif;
+    --font-body: 'Roboto Mono', monospace;
+}
+
+/* --- Base & Background Animation --- */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-body);
+    margin: 0;
+    padding: 20px;
+    
+    position: relative;
+    overflow-x: hidden;
+    min-height: 100vh; /* Ensure background covers full height */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center content vertically */
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.04;
+    z-index: -1;
+    background-image: linear-gradient(
+        0deg,
+        transparent 50%,
+        rgba(255, 255, 255, 0.5) 50%
+    );
+    background-size: 100% 4px;
+    animation: fast-scanlines 0.25s linear infinite;
+}
+
+@keyframes fast-scanlines {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100px; }
+}
+
+/* --- Layout --- */
+.container {
+    max-width: 450px; /* Made max-width smaller for more compact buttons */
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px 0; /* Add some vertical padding */
+}
+
+/* --- Heading & Glitch Animation --- */
+.glitch {
+    font-family: var(--font-heading);
+    font-size: 3.2rem; /* Slightly reduced font size */
+    color: var(--text-color);
+    position: relative;
+    letter-spacing: 0.1em;
+    margin: 20px 0 5px 0; /* Adjusted margin */
+    animation: glitch-flicker 3s infinite alternate;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+    overflow: hidden;
+}
+
+.glitch::before {
+    left: 3px;
+    text-shadow: -2px 0 var(--neon-pink);
+    animation: glitch-effect 1.5s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -3px;
+    text-shadow: -2px 0 var(--neon-cyan);
+    animation: glitch-effect 1s infinite linear alternate;
+}
+
+@keyframes glitch-flicker {
+    0%, 100% { opacity: 1; }
+    50.0% { opacity: 0.9; } /* Subtle flicker */
+    50.5% { opacity: 1; }
+    51.0% { opacity: 0.85; }
+    51.5% { opacity: 1; }
+}
+
+@keyframes glitch-effect {
+    0% { clip-path: inset(50% 0 30% 0); }
+    20% { clip-path: inset(20% 0 70% 0); }
+    40% { clip-path: inset(80% 0 5% 0); }
+    60% { clip-path: inset(30% 0 40% 0); }
+    80% { clip-path: inset(60% 0 15% 0); }
+    100% { clip-path: inset(40% 0 30% 0); }
+}
+
+.tagline {
+    font-size: 0.9rem; /* Slightly smaller tagline */
+    color: var(--text-color);
+    opacity: 0.7; /* Slightly more subtle tagline */
+    margin-bottom: 30px; /* Adjusted margin */
+}
+
+/* --- Link Buttons --- */
+.link-grid ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.link-grid li {
+    margin-bottom: 1rem; /* Reduced space between buttons */
+}
+
+.link-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.5rem; /* Smaller padding for more compact buttons */
+    background-color: transparent;
+    border: 2px solid var(--neon-cyan);
+    border-radius: 20px; /* Slightly more rounded corners */
+    
+    color: var(--text-color);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.95rem; /* Slightly smaller font size for button text */
+    text-decoration: none;
+    text-transform: uppercase;
+    
+    position: relative;
+    transition: all 0.2s ease-in-out;
+    overflow: hidden; /* Ensure glowing doesn't bleed */
+}
+
+.link-button .icon {
+    width: 22px; /* Slightly smaller icon */
+    height: 22px; /* Slightly smaller icon */
+    margin-right: 10px; /* Reduced margin */
+    filter: invert(80%) sepia(100%) saturate(10000%) hue-rotate(180deg);
+    transition: transform 0.3s ease-in-out; /* Smooth transition for spin */
+}
+
+/* --- Button Hover Animation --- */
+.link-button:hover,
+.link-button:focus {
+    background-color: rgba(0, 255, 255, 0.15); /* Stronger hover background */
+    color: var(--neon-cyan);
+    box-shadow: 0 0 18px var(--neon-cyan), 0 0 30px var(--neon-cyan); /* More prominent neon glow */
+    transform: translateX(-3px) scale(1.02); /* More noticeable hover shift */
+}
+
+.link-button:hover .icon,
+.link-button:focus .icon {
+    animation: spin 0.8s linear infinite; /* Subtle spin on hover */
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.link-button:active {
+    transform: scale(0.97); /* More responsive active state */
+}
+
+/* Responsive adjustments for smaller screens if needed (e.g., very narrow phones) */
+@media (max-width: 400px) {
+    .glitch {
+        font-size: 2.8rem;
+    }
+    .link-button {
+        font-size: 0.85rem;
+        padding: 0.7rem 1rem;
+    }
+    .link-button .icon {
+        width: 20px;
+        height: 20px;
+    }
+}
