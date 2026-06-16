@@ -3,28 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="OnlyKamz signal hub: videos, socials, and exclusive drops routed through one neon console.">
-    <meta name="theme-color" content="#05070d">
-    <meta property="og:title" content="OnlyKamz | Signal Hub">
-    <meta property="og:description" content="Tap into the OnlyKamz creator signal.">
-    <meta property="og:image" content="https://onlykamz.com/assets/hero-signal-console.svg">
+    <meta name="description" content="OnlyKamz social arcade: YouTube, Instagram, X, and surprise links in one neon hub.">
+    <meta name="theme-color" content="#070617">
+    <meta property="og:title" content="OnlyKamz | Social Arcade">
+    <meta property="og:description" content="Pick a portal and jump into the OnlyKamz universe.">
+    <meta property="og:image" content="https://onlykamz.com/assets/hero-social-hub.svg">
     <meta property="og:type" content="website">
-    <title>OnlyKamz | Signal Hub</title>
+    <title>OnlyKamz | Social Arcade</title>
     <style>
         :root {
             color-scheme: dark;
-            --bg: #05070d;
-            --panel: rgba(7, 11, 18, 0.72);
-            --panel-strong: rgba(4, 8, 14, 0.9);
-            --line: rgba(135, 231, 255, 0.28);
-            --line-hot: rgba(255, 66, 189, 0.62);
-            --text: #f7fbff;
-            --muted: #a6b9c9;
-            --cyan: #27d8ff;
-            --pink: #ff42bd;
-            --green: #78ff8e;
-            --amber: #ffc14f;
-            --red: #ff5868;
+            --bg: #070617;
+            --ink: #fbfdff;
+            --soft: #dbe7f2;
+            --muted: #91a7bc;
+            --cyan: #25d7ff;
+            --pink: #ff4cc9;
+            --lime: #83ff9a;
+            --sun: #ffd166;
+            --red: #ff5f72;
+            --violet: #8a6cff;
+            --panel: rgba(9, 11, 28, 0.72);
+            --panel-dark: rgba(5, 7, 18, 0.88);
+            --line: rgba(168, 235, 255, 0.24);
             --cursor-x: 50vw;
             --cursor-y: 50vh;
         }
@@ -41,21 +42,21 @@
         body {
             min-height: 100%;
             margin: 0;
-            background: var(--bg);
-            color: var(--text);
-            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             overflow-x: hidden;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         }
 
         body::before {
             content: "";
             position: fixed;
             inset: 0;
-            z-index: 4;
+            z-index: 3;
             pointer-events: none;
             background:
-                radial-gradient(circle at var(--cursor-x) var(--cursor-y), rgba(39, 216, 255, 0.16), transparent 280px),
-                linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+                radial-gradient(circle at var(--cursor-x) var(--cursor-y), rgba(37, 215, 255, 0.2), transparent 260px),
+                linear-gradient(rgba(255, 255, 255, 0.034) 1px, transparent 1px);
             background-size: auto, 100% 5px;
             mix-blend-mode: screen;
         }
@@ -68,53 +69,35 @@
         .page {
             position: relative;
             min-height: 100vh;
-            background:
-                linear-gradient(180deg, rgba(5, 7, 13, 0.2) 0%, #05070d 86%),
-                radial-gradient(circle at 16% 20%, rgba(255, 193, 79, 0.12), transparent 25rem);
-        }
-
-        .hero {
-            position: relative;
-            display: grid;
-            min-height: 92svh;
-            overflow: hidden;
             isolation: isolate;
-        }
-
-        .hero-art {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: 67% center;
-            filter: saturate(1.1) contrast(1.04);
-            transform: scale(1.02);
-            z-index: -3;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            z-index: -2;
             background:
-                linear-gradient(90deg, rgba(5, 7, 13, 0.94) 0%, rgba(5, 7, 13, 0.72) 43%, rgba(5, 7, 13, 0.12) 100%),
-                linear-gradient(180deg, rgba(5, 7, 13, 0.22) 0%, rgba(5, 7, 13, 0.78) 100%);
+                radial-gradient(circle at 20% 22%, rgba(255, 76, 201, 0.22), transparent 24rem),
+                radial-gradient(circle at 82% 15%, rgba(37, 215, 255, 0.17), transparent 26rem),
+                radial-gradient(circle at 54% 74%, rgba(131, 255, 154, 0.12), transparent 28rem),
+                #070617;
         }
 
-        .hero::after {
+        .page::before {
             content: "";
-            position: absolute;
+            position: fixed;
             inset: 0;
-            z-index: -1;
+            z-index: -4;
+            background-image:
+                linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+                linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+            background-size: 84px 84px;
+            mask-image: radial-gradient(circle at center, black, transparent 78%);
+        }
+
+        .page::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -3;
             pointer-events: none;
             background:
-                linear-gradient(90deg, rgba(39, 216, 255, 0.09) 1px, transparent 1px),
-                linear-gradient(rgba(39, 216, 255, 0.07) 1px, transparent 1px);
-            background-size: 74px 74px;
-            mask-image: linear-gradient(90deg, black 0%, transparent 74%);
-            opacity: 0.58;
+                linear-gradient(125deg, transparent 0 24%, rgba(37, 215, 255, 0.08) 24% 25%, transparent 25% 44%, rgba(255, 76, 201, 0.1) 44% 45%, transparent 45%),
+                linear-gradient(35deg, transparent 0 52%, rgba(255, 209, 102, 0.06) 52% 53%, transparent 53%);
         }
 
         .shell {
@@ -127,29 +110,27 @@
             align-items: center;
             justify-content: space-between;
             gap: 18px;
-            padding: 24px 0 10px;
+            padding: 22px 0 0;
         }
 
-        .brand-lockup {
-            display: flex;
+        .brand {
+            display: inline-flex;
             align-items: center;
             gap: 12px;
-            min-width: 0;
         }
 
         .brand-mark {
             position: relative;
             display: grid;
-            width: 44px;
-            height: 44px;
-            flex: 0 0 auto;
+            width: 46px;
+            height: 46px;
             place-items: center;
-            border: 1px solid rgba(39, 216, 255, 0.55);
-            border-radius: 8px;
+            border: 1px solid rgba(37, 215, 255, 0.65);
+            border-radius: 12px;
             background:
-                linear-gradient(135deg, rgba(39, 216, 255, 0.18), rgba(255, 66, 189, 0.13)),
-                rgba(5, 7, 13, 0.62);
-            box-shadow: 0 0 30px rgba(39, 216, 255, 0.18);
+                linear-gradient(135deg, rgba(37, 215, 255, 0.24), rgba(255, 76, 201, 0.2)),
+                rgba(4, 6, 18, 0.82);
+            box-shadow: 0 0 34px rgba(37, 215, 255, 0.18);
             font-weight: 900;
         }
 
@@ -157,486 +138,504 @@
             content: "";
             position: absolute;
             inset: -5px;
-            border: 1px solid rgba(120, 255, 142, 0.24);
-            border-radius: 8px;
-            clip-path: polygon(0 0, 58% 0, 58% 18%, 18% 18%, 18% 100%, 0 100%);
+            border: 1px solid rgba(131, 255, 154, 0.28);
+            border-radius: 14px;
+            clip-path: polygon(0 0, 66% 0, 66% 18%, 18% 18%, 18% 100%, 0 100%);
         }
 
-        .brand-meta {
+        .brand-copy {
             display: grid;
             gap: 2px;
         }
 
-        .brand-meta strong {
-            font-size: 0.98rem;
+        .brand-copy strong {
             line-height: 1;
+            font-size: 1rem;
         }
 
-        .brand-meta span {
-            color: var(--muted);
+        .brand-copy span,
+        .top-pill {
+            color: var(--soft);
             font-size: 0.78rem;
         }
 
-        .status-pill {
+        .top-pill {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            min-height: 34px;
-            padding: 7px 12px;
-            border: 1px solid rgba(120, 255, 142, 0.42);
-            border-radius: 8px;
-            background: rgba(5, 7, 13, 0.62);
-            color: #d9ffe0;
-            font-size: 0.82rem;
-            white-space: nowrap;
-            box-shadow: 0 0 24px rgba(120, 255, 142, 0.11);
+            min-height: 36px;
+            padding: 8px 12px;
+            border: 1px solid rgba(131, 255, 154, 0.38);
+            border-radius: 999px;
+            background: rgba(4, 6, 18, 0.66);
+            box-shadow: 0 0 24px rgba(131, 255, 154, 0.1);
         }
 
-        .status-dot {
+        .top-pill i {
             width: 8px;
             height: 8px;
             border-radius: 999px;
-            background: var(--green);
-            box-shadow: 0 0 14px var(--green);
-            animation: pulse 1.6s ease-in-out infinite;
+            background: var(--lime);
+            box-shadow: 0 0 14px var(--lime);
+            animation: blink 1.65s ease-in-out infinite;
         }
 
-        .hero-grid {
+        .arcade {
             display: grid;
-            grid-template-columns: minmax(0, 1.02fr) minmax(390px, 0.78fr);
-            gap: 46px;
-            align-items: end;
-            padding: 46px 0 64px;
+            grid-template-columns: minmax(0, 0.86fr) minmax(460px, 1fr);
+            min-height: calc(100svh - 68px);
+            gap: 52px;
+            align-items: center;
+            padding: 36px 0 58px;
         }
 
         .intro {
             display: grid;
             gap: 24px;
-            align-self: center;
-            padding-bottom: 14px;
+            align-content: center;
         }
 
-        .eyebrow {
+        .sticker {
             display: inline-flex;
             width: fit-content;
             align-items: center;
             gap: 10px;
-            padding: 8px 10px;
-            border: 1px solid rgba(255, 193, 79, 0.36);
-            border-radius: 8px;
-            background: rgba(5, 7, 13, 0.58);
-            color: #ffe0a3;
+            padding: 8px 12px;
+            border: 1px solid rgba(255, 209, 102, 0.48);
+            border-radius: 999px;
+            background: rgba(7, 6, 23, 0.68);
+            color: #ffe6a7;
             font-size: 0.82rem;
             text-transform: uppercase;
+            transform: rotate(-1deg);
+            box-shadow: 0 0 26px rgba(255, 209, 102, 0.1);
         }
 
-        .eyebrow::before {
+        .sticker::before {
             content: "";
             width: 28px;
             height: 1px;
-            background: linear-gradient(90deg, var(--amber), var(--pink));
+            background: linear-gradient(90deg, var(--sun), var(--pink));
         }
 
         h1 {
-            max-width: 8ch;
+            max-width: 9ch;
             margin: 0;
-            font-size: 3.65rem;
+            font-size: 3.85rem;
             line-height: 0.88;
             letter-spacing: 0;
             text-transform: uppercase;
             text-wrap: balance;
             text-shadow:
-                0 0 18px rgba(39, 216, 255, 0.24),
-                0 0 46px rgba(255, 66, 189, 0.14);
+                0 0 18px rgba(37, 215, 255, 0.3),
+                0 0 48px rgba(255, 76, 201, 0.18);
         }
 
         .lede {
-            max-width: 620px;
+            max-width: 570px;
             margin: 0;
-            color: #d9e8f5;
-            font-size: 1.12rem;
-            line-height: 1.65;
+            color: #e8f3ff;
+            font-size: 1.16rem;
+            line-height: 1.64;
         }
 
-        .metric-row {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            max-width: 650px;
-            border: 1px solid rgba(135, 231, 255, 0.22);
-            border-radius: 8px;
-            background: rgba(5, 7, 13, 0.54);
-            overflow: hidden;
-            backdrop-filter: blur(16px);
-        }
-
-        .metric {
-            display: grid;
-            gap: 5px;
-            min-height: 82px;
-            padding: 14px 16px;
-            border-right: 1px solid rgba(135, 231, 255, 0.18);
-        }
-
-        .metric:last-child {
-            border-right: 0;
-        }
-
-        .metric b {
-            color: var(--text);
-            font-size: 1.45rem;
-            line-height: 1;
-        }
-
-        .metric span {
-            color: var(--muted);
-            font-size: 0.78rem;
-            text-transform: uppercase;
-        }
-
-        .console {
-            display: grid;
-            gap: 14px;
-            align-self: end;
-        }
-
-        .console-header {
+        .mini-menu {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            padding: 0 2px;
-            color: #dceaf5;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
-        .console-header h2 {
-            margin: 0;
-            font-size: 1rem;
-            text-transform: uppercase;
-        }
-
-        .console-header span {
-            color: var(--muted);
-            font-size: 0.78rem;
-        }
-
-        .link-stack {
-            display: grid;
-            gap: 12px;
-        }
-
-        .webhook-card {
-            position: relative;
-            display: grid;
-            min-height: 92px;
-            grid-template-columns: 58px minmax(0, 1fr) auto;
-            align-items: center;
-            gap: 14px;
-            padding: 16px;
-            border: 1px solid var(--line);
-            border-radius: 8px;
-            background:
-                linear-gradient(90deg, rgba(39, 216, 255, 0.08), transparent 40%),
-                var(--panel);
-            box-shadow:
-                0 12px 42px rgba(0, 0, 0, 0.28),
-                inset 0 1px 0 rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(18px);
-            overflow: hidden;
-            transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
-        }
-
-        .webhook-card::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, transparent, rgba(120, 255, 142, 0.16), rgba(255, 66, 189, 0.18), transparent);
-            transform: translateX(-110%);
-            transition: transform 620ms cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-
-        .webhook-card::after {
-            content: "";
-            position: absolute;
-            inset: auto 16px 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--cyan), var(--pink), var(--green), var(--amber));
-            transform: scaleX(0.18);
-            transform-origin: left;
-            opacity: 0.6;
-            transition: transform 240ms ease, opacity 240ms ease;
-        }
-
-        .webhook-card:hover,
-        .webhook-card:focus-visible {
-            transform: translateY(-4px);
-            border-color: rgba(255, 66, 189, 0.72);
-            background:
-                linear-gradient(90deg, rgba(255, 66, 189, 0.12), rgba(39, 216, 255, 0.07) 46%, rgba(120, 255, 142, 0.08)),
-                var(--panel-strong);
-            box-shadow:
-                0 20px 54px rgba(0, 0, 0, 0.38),
-                0 0 34px rgba(255, 66, 189, 0.18),
-                inset 0 1px 0 rgba(255, 255, 255, 0.12);
-        }
-
-        .webhook-card:hover::before,
-        .webhook-card:focus-visible::before {
-            transform: translateX(110%);
-        }
-
-        .webhook-card:hover::after,
-        .webhook-card:focus-visible::after {
-            transform: scaleX(1);
-            opacity: 1;
-        }
-
-        .webhook-card:focus-visible {
-            outline: 2px solid rgba(255, 193, 79, 0.82);
-            outline-offset: 4px;
-        }
-
-        .icon-box {
-            position: relative;
-            z-index: 1;
-            display: grid;
-            width: 58px;
-            height: 58px;
-            place-items: center;
-            border: 1px solid rgba(135, 231, 255, 0.4);
-            border-radius: 8px;
-            background:
-                linear-gradient(135deg, rgba(39, 216, 255, 0.13), rgba(255, 66, 189, 0.13)),
-                rgba(255, 255, 255, 0.04);
-        }
-
-        .icon-box svg {
-            width: 28px;
-            height: 28px;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 1.8;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        .icon-youtube { color: var(--red); }
-        .icon-instagram { color: var(--pink); }
-        .icon-x { color: var(--cyan); }
-        .icon-exclusive { color: var(--amber); }
-
-        .hook-copy {
-            position: relative;
-            z-index: 1;
-            display: grid;
-            min-width: 0;
-            gap: 5px;
-        }
-
-        .hook-topline {
-            display: flex;
+        .mini-menu a {
+            display: inline-flex;
             align-items: center;
             gap: 8px;
-            min-width: 0;
-            color: var(--muted);
-            font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-            font-size: 0.76rem;
+            min-height: 36px;
+            padding: 8px 12px;
+            border: 1px solid rgba(168, 235, 255, 0.24);
+            border-radius: 999px;
+            background: rgba(5, 7, 18, 0.58);
+            color: #e7f2fb;
+            font-size: 0.84rem;
+            backdrop-filter: blur(16px);
+            transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
         }
 
-        .method {
-            color: var(--green);
+        .mini-menu a:hover,
+        .mini-menu a:focus-visible {
+            transform: translateY(-2px);
+            border-color: rgba(255, 76, 201, 0.7);
+            background: rgba(255, 76, 201, 0.11);
+            outline: none;
         }
 
-        .hook-title {
-            display: flex;
-            align-items: baseline;
-            gap: 10px;
-            min-width: 0;
-        }
-
-        .hook-title strong {
-            font-size: 1.16rem;
-            line-height: 1.1;
-        }
-
-        .hook-title span {
-            min-width: 0;
-            color: var(--muted);
-            font-size: 0.86rem;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .packet {
-            position: relative;
-            z-index: 1;
-            display: inline-grid;
-            min-width: 64px;
-            min-height: 32px;
-            place-items: center;
-            border: 1px solid rgba(120, 255, 142, 0.42);
-            border-radius: 8px;
-            color: #d9ffe0;
-            font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-            font-size: 0.72rem;
-            background: rgba(120, 255, 142, 0.08);
-        }
-
-        .terminal {
-            display: grid;
-            gap: 12px;
-            padding: 16px;
-            border: 1px solid rgba(135, 231, 255, 0.23);
-            border-radius: 8px;
-            background: rgba(1, 4, 9, 0.7);
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(18px);
-        }
-
-        .terminal-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            color: var(--muted);
-            font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-            font-size: 0.76rem;
-        }
-
-        .window-dots {
-            display: flex;
-            gap: 6px;
-        }
-
-        .window-dots i {
+        .mini-menu a::before {
+            content: "";
             width: 8px;
             height: 8px;
             border-radius: 999px;
-            background: var(--cyan);
-            box-shadow: 0 0 10px currentColor;
-        }
-
-        .window-dots i:nth-child(2) {
             background: var(--pink);
+            box-shadow: 0 0 12px currentColor;
         }
 
-        .window-dots i:nth-child(3) {
-            background: var(--green);
+        .mini-menu a:nth-child(2)::before {
+            background: var(--cyan);
         }
 
-        .terminal-line {
+        .mini-menu a:nth-child(3)::before {
+            background: var(--lime);
+        }
+
+        .mini-menu a:nth-child(4)::before {
+            background: var(--sun);
+        }
+
+        .booth {
+            position: relative;
+            min-height: 690px;
             display: grid;
-            gap: 6px;
-            font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-            font-size: 0.82rem;
-            line-height: 1.5;
+            place-items: center;
         }
 
-        .terminal-line b {
-            color: var(--cyan);
-            font-weight: 600;
+        .booth-art {
+            position: absolute;
+            inset: -34px -80px -40px -120px;
+            z-index: -3;
+            width: calc(100% + 210px);
+            height: calc(100% + 80px);
+            object-fit: cover;
+            opacity: 0.56;
+            filter: saturate(1.35) brightness(1.08);
         }
 
-        .terminal-line span {
-            color: #dceaf5;
+        .orbit {
+            position: absolute;
+            inset: 54px;
+            border: 1px solid rgba(168, 235, 255, 0.24);
+            border-radius: 50%;
+            box-shadow:
+                inset 0 0 44px rgba(37, 215, 255, 0.08),
+                0 0 44px rgba(255, 76, 201, 0.08);
+            animation: breathe 5s ease-in-out infinite;
         }
 
-        .terminal-line small {
-            color: var(--muted);
-            font-size: 0.76rem;
+        .orbit::before,
+        .orbit::after {
+            content: "";
+            position: absolute;
+            inset: 48px;
+            border: 1px dashed rgba(255, 255, 255, 0.16);
+            border-radius: 50%;
         }
 
-        .afterglow {
-            padding: 34px 0 44px;
-            border-top: 1px solid rgba(135, 231, 255, 0.16);
+        .orbit::after {
+            inset: 102px;
+            border-color: rgba(131, 255, 154, 0.18);
+            transform: rotate(18deg);
+        }
+
+        .centerpiece {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            width: min(320px, 46vw);
+            aspect-ratio: 1;
+            place-items: center;
+            border: 1px solid rgba(168, 235, 255, 0.38);
+            border-radius: 34px;
             background:
-                linear-gradient(90deg, rgba(39, 216, 255, 0.09), transparent 28%, rgba(255, 193, 79, 0.07)),
-                #05070d;
+                radial-gradient(circle at 35% 22%, rgba(255, 255, 255, 0.17), transparent 32%),
+                linear-gradient(145deg, rgba(37, 215, 255, 0.18), rgba(255, 76, 201, 0.16)),
+                rgba(5, 7, 18, 0.78);
+            box-shadow:
+                0 0 70px rgba(37, 215, 255, 0.18),
+                0 0 110px rgba(255, 76, 201, 0.14),
+                inset 0 1px 0 rgba(255, 255, 255, 0.14);
+            backdrop-filter: blur(20px);
+            overflow: hidden;
         }
 
-        .afterglow-grid {
+        .centerpiece::before {
+            content: "";
+            position: absolute;
+            width: 160%;
+            height: 40%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.16), transparent);
+            transform: rotate(-18deg);
+            animation: sweep 5s ease-in-out infinite;
+        }
+
+        .centerpiece strong {
+            position: relative;
+            z-index: 1;
+            color: white;
+            font-size: clamp(6rem, 12vw, 9.5rem);
+            line-height: 0.72;
+            text-shadow:
+                0 0 28px rgba(37, 215, 255, 0.85),
+                0 0 54px rgba(255, 76, 201, 0.65);
+        }
+
+        .centerpiece span {
+            position: absolute;
+            bottom: 26px;
+            z-index: 1;
+            color: var(--soft);
+            font-size: 0.86rem;
+            text-transform: uppercase;
+        }
+
+        .portal {
+            position: absolute;
+            z-index: 2;
             display: grid;
-            grid-template-columns: minmax(0, 1fr) auto;
-            gap: 24px;
-            align-items: center;
+            width: 184px;
+            min-height: 118px;
+            gap: 8px;
+            padding: 16px;
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            background:
+                linear-gradient(145deg, rgba(255, 255, 255, 0.08), transparent),
+                rgba(6, 7, 22, 0.78);
+            box-shadow:
+                0 22px 52px rgba(0, 0, 0, 0.32),
+                inset 0 1px 0 rgba(255, 255, 255, 0.09);
+            backdrop-filter: blur(18px);
+            transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
         }
 
-        .afterglow p {
-            max-width: 660px;
+        .portal:hover,
+        .portal:focus-visible {
+            transform: translateY(-7px) rotate(0deg) scale(1.04);
+            border-color: var(--portal-color);
+            box-shadow:
+                0 30px 62px rgba(0, 0, 0, 0.4),
+                0 0 42px color-mix(in srgb, var(--portal-color) 38%, transparent);
+            outline: none;
+        }
+
+        .portal::before {
+            content: "";
+            position: absolute;
+            inset: 12px 12px auto auto;
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: var(--portal-color);
+            box-shadow: 0 0 16px var(--portal-color);
+        }
+
+        .portal small {
+            color: var(--muted);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+        }
+
+        .portal strong {
+            color: white;
+            font-size: 1.35rem;
+            line-height: 1.05;
+        }
+
+        .portal span {
+            color: var(--soft);
+            font-size: 0.86rem;
+            line-height: 1.3;
+        }
+
+        .portal-youtube {
+            --portal-color: var(--red);
+            top: 18px;
+            left: 48%;
+            transform: translateX(-50%) rotate(-3deg);
+        }
+
+        .portal-instagram {
+            --portal-color: var(--pink);
+            top: 245px;
+            right: 0;
+            transform: rotate(3deg);
+        }
+
+        .portal-x {
+            --portal-color: var(--cyan);
+            bottom: 26px;
+            left: 32%;
+            transform: translateX(-50%) rotate(2deg);
+        }
+
+        .portal-exclusive {
+            --portal-color: var(--sun);
+            top: 250px;
+            left: 0;
+            transform: rotate(-4deg);
+        }
+
+        .now-playing {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            z-index: 3;
+            width: min(320px, 44%);
+            padding: 16px;
+            border: 1px solid rgba(168, 235, 255, 0.22);
+            border-radius: 20px;
+            background: rgba(3, 5, 14, 0.78);
+            box-shadow: 0 20px 52px rgba(0, 0, 0, 0.34);
+            backdrop-filter: blur(18px);
+        }
+
+        .now-playing p {
             margin: 0;
             color: var(--muted);
-            line-height: 1.55;
+            font-size: 0.78rem;
         }
 
-        .mini-tags {
+        .now-playing strong {
+            display: block;
+            margin-top: 7px;
+            color: var(--cyan);
+            font-size: 1.05rem;
+        }
+
+        .now-playing span {
+            display: block;
+            margin-top: 6px;
+            color: var(--soft);
+            line-height: 1.45;
+        }
+
+        .ticker {
+            overflow: hidden;
+            border-top: 1px solid rgba(168, 235, 255, 0.16);
+            border-bottom: 1px solid rgba(168, 235, 255, 0.16);
+            background: rgba(3, 5, 14, 0.66);
+        }
+
+        .ticker-track {
+            display: flex;
+            width: max-content;
+            max-width: none;
+            gap: 28px;
+            padding: 14px 0;
+            color: var(--soft);
+            font-size: 0.86rem;
+            animation: marquee 26s linear infinite;
+        }
+
+        .ticker-track span {
+            display: inline-flex;
+            align-items: center;
+            gap: 28px;
+            white-space: nowrap;
+        }
+
+        .ticker-track span::after {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: var(--pink);
+            box-shadow: 0 0 14px var(--pink);
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 18px;
+            padding: 28px 0 38px;
+            color: var(--muted);
+            font-size: 0.86rem;
+        }
+
+        .footer-links {
             display: flex;
             flex-wrap: wrap;
             justify-content: flex-end;
             gap: 8px;
         }
 
-        .mini-tags span {
-            padding: 7px 9px;
-            border: 1px solid rgba(135, 231, 255, 0.21);
-            border-radius: 8px;
+        .footer-links a {
+            padding: 8px 10px;
+            border: 1px solid rgba(168, 235, 255, 0.2);
+            border-radius: 999px;
             background: rgba(255, 255, 255, 0.04);
-            color: #dceaf5;
-            font-size: 0.78rem;
+            color: var(--soft);
         }
 
-        @keyframes pulse {
+        @keyframes blink {
             0%, 100% {
-                transform: scale(1);
                 opacity: 1;
+                transform: scale(1);
             }
             50% {
-                transform: scale(1.5);
-                opacity: 0.6;
+                opacity: 0.58;
+                transform: scale(1.45);
+            }
+        }
+
+        @keyframes breathe {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.88;
+            }
+            50% {
+                transform: scale(1.035);
+                opacity: 1;
+            }
+        }
+
+        @keyframes sweep {
+            0%, 18% {
+                translate: -100% 0;
+            }
+            46%, 100% {
+                translate: 100% 0;
+            }
+        }
+
+        @keyframes marquee {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-50%);
             }
         }
 
         @media (min-width: 760px) {
             h1 {
-                font-size: 5rem;
+                font-size: 5.1rem;
             }
         }
 
         @media (min-width: 1080px) {
             h1 {
-                font-size: 6.2rem;
+                font-size: 6.5rem;
             }
         }
 
-        @media (max-width: 940px) {
-            .hero {
-                min-height: 90svh;
-            }
-
-            .hero::before {
-                background:
-                    linear-gradient(180deg, rgba(5, 7, 13, 0.9) 0%, rgba(5, 7, 13, 0.55) 46%, rgba(5, 7, 13, 0.92) 100%),
-                    linear-gradient(90deg, rgba(5, 7, 13, 0.72), rgba(5, 7, 13, 0.28));
-            }
-
-            .hero-grid {
+        @media (max-width: 980px) {
+            .arcade {
                 grid-template-columns: 1fr;
-                gap: 28px;
-                padding: 34px 0 46px;
+                gap: 38px;
+                padding-top: 38px;
             }
 
-            .intro {
-                padding-bottom: 0;
+            .booth {
+                min-height: 760px;
             }
 
-            .console {
-                align-self: auto;
+            .booth-art {
+                inset: -30px -60px;
+                width: calc(100% + 120px);
             }
 
-            .afterglow-grid {
-                grid-template-columns: 1fr;
+            .footer {
+                display: grid;
             }
 
-            .mini-tags {
+            .footer-links {
                 justify-content: flex-start;
             }
         }
@@ -647,12 +646,9 @@
             }
 
             .topbar {
-                display: grid;
-                justify-content: start;
-                justify-items: start;
-                align-items: start;
+                align-items: flex-start;
+                flex-direction: column;
                 gap: 12px;
-                padding-top: 16px;
             }
 
             .brand-mark {
@@ -660,78 +656,87 @@
                 height: 40px;
             }
 
-            .brand-meta span,
-            .status-pill {
-                font-size: 0.72rem;
-            }
-
-            .status-pill {
-                padding: 7px 9px;
-                max-width: 100%;
-            }
-
             h1 {
-                font-size: 3.1rem;
+                max-width: 10ch;
+                font-size: 3.3rem;
             }
 
-            .intro,
-            .console,
-            .lede {
-                width: 100%;
-                min-width: 0;
+            .intro {
+                max-width: 330px;
             }
 
             .lede {
-                max-width: 32ch;
+                max-width: 29ch;
                 font-size: 1rem;
                 line-height: 1.58;
-                overflow-wrap: break-word;
             }
 
-            .metric-row {
-                grid-template-columns: 1fr;
-            }
-
-            .metric {
-                min-height: 70px;
-                border-right: 0;
-                border-bottom: 1px solid rgba(135, 231, 255, 0.18);
-            }
-
-            .metric:last-child {
-                border-bottom: 0;
-            }
-
-            .webhook-card {
-                grid-template-columns: 48px minmax(0, 1fr);
-                min-height: 104px;
-                padding: 14px;
-            }
-
-            .icon-box {
-                width: 48px;
-                height: 48px;
-            }
-
-            .packet {
-                grid-column: 2;
-                justify-self: start;
-                min-height: 28px;
-            }
-
-            .hook-title {
+            .mini-menu {
                 display: grid;
-                gap: 3px;
+                grid-template-columns: 1fr;
+                max-width: 230px;
             }
 
-            .hook-title span {
-                white-space: normal;
+            .mini-menu a {
+                justify-content: center;
+                min-width: 0;
+                text-align: center;
             }
 
-            .console-header {
-                align-items: flex-start;
-                flex-direction: column;
-                gap: 4px;
+            .booth {
+                min-height: auto;
+                display: grid;
+                gap: 12px;
+                place-items: stretch;
+            }
+
+            .booth-art,
+            .orbit {
+                display: none;
+            }
+
+            .centerpiece {
+                width: 100%;
+                min-height: 190px;
+                aspect-ratio: auto;
+                border-radius: 24px;
+            }
+
+            .centerpiece strong {
+                font-size: 5.4rem;
+            }
+
+            .centerpiece span {
+                bottom: 18px;
+            }
+
+            .portal,
+            .now-playing {
+                position: relative;
+                inset: auto;
+                width: 100%;
+                min-height: 108px;
+                transform: none;
+                border-radius: 20px;
+            }
+
+            .portal:hover,
+            .portal:focus-visible {
+                transform: translateY(-3px);
+            }
+
+            .now-playing {
+                width: 100%;
+                margin-top: 2px;
+            }
+
+            .ticker-track {
+                gap: 18px;
+                font-size: 0.8rem;
+            }
+
+            .ticker-track span {
+                gap: 18px;
             }
         }
 
@@ -749,162 +754,114 @@
 </head>
 <body>
     <div class="page">
-        <section class="hero" aria-label="OnlyKamz signal hub">
-            <img class="hero-art" src="assets/hero-signal-console.svg" alt="">
-            <div class="shell">
-                <header class="topbar">
-                    <a class="brand-lockup" href="https://onlykamz.com" aria-label="OnlyKamz home">
-                        <span class="brand-mark" aria-hidden="true">K</span>
-                        <span class="brand-meta">
-                            <strong>OnlyKamz</strong>
-                            <span>creator signal router</span>
-                        </span>
-                    </a>
-                    <div class="status-pill" aria-label="Site status online">
-                        <span class="status-dot" aria-hidden="true"></span>
-                        ONLINE
-                    </div>
-                </header>
+        <header class="shell topbar">
+            <a class="brand" href="https://onlykamz.com" aria-label="OnlyKamz home">
+                <span class="brand-mark" aria-hidden="true">K</span>
+                <span class="brand-copy">
+                    <strong>OnlyKamz</strong>
+                    <span>social arcade</span>
+                </span>
+            </a>
+            <span class="top-pill"><i aria-hidden="true"></i> choose a vibe</span>
+        </header>
 
-                <div class="hero-grid">
-                    <main class="intro">
-                        <span class="eyebrow">webhook deck armed</span>
-                        <h1>OnlyKamz</h1>
-                        <p class="lede">A high-voltage link console for the videos, socials, drops, and little bits of beautifully unnecessary internet chaos.</p>
-                        <div class="metric-row" aria-label="OnlyKamz signal metrics">
-                            <div class="metric">
-                                <b>04</b>
-                                <span>endpoints</span>
-                            </div>
-                            <div class="metric">
-                                <b>24/7</b>
-                                <span>signal</span>
-                            </div>
-                            <div class="metric">
-                                <b>200</b>
-                                <span>status</span>
-                            </div>
-                        </div>
-                    </main>
+        <main class="shell arcade" aria-label="OnlyKamz social arcade">
+            <section class="intro">
+                <span class="sticker">welcome to my corner</span>
+                <h1>Pick a portal</h1>
+                <p class="lede">Videos, photos, posts, and a surprise door are all floating around this little neon arcade. Tap whatever matches the mood.</p>
+                <nav class="mini-menu" aria-label="Quick social links">
+                    <a href="https://youtube.com/@onlykamz97?si=45kwAjh25pIbuLvF" target="_blank" rel="noopener noreferrer">YouTube</a>
+                    <a href="https://www.instagram.com/onlykamz97?igsh=cm1mZGMwNzJwaDU2&utm_source=qr" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    <a href="https://x.com/lifeofkrayz?s=21" target="_blank" rel="noopener noreferrer">X</a>
+                    <a href="https://youtu.be/dQw4w9WgXcQ?si=hZCDYiObDQ4Vt7Ev" target="_blank" rel="noopener noreferrer">Surprise</a>
+                </nav>
+            </section>
 
-                    <aside class="console" aria-label="OnlyKamz links">
-                        <div class="console-header">
-                            <h2>Webhook Relay</h2>
-                            <span>onlykamz.com/api/routes</span>
-                        </div>
-
-                        <div class="link-stack">
-                            <a class="webhook-card" href="https://youtube.com/@onlykamz97?si=45kwAjh25pIbuLvF" target="_blank" rel="noopener noreferrer" data-route="POST /watch" data-title="YouTube" data-payload="payload: video_feed -> @onlykamz7" data-tone="stream online" aria-label="Open OnlyKamz on YouTube">
-                                <span class="icon-box icon-youtube" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24">
-                                        <path d="M4.5 7.5c.2-1.2 1.1-2.1 2.2-2.3 1.8-.3 5.3-.3 5.3-.3s3.5 0 5.3.3c1.1.2 2 .9 2.2 2.3.3 1.5.3 4.5.3 4.5s0 3-.3 4.5c-.2 1.2-1.1 2.1-2.2 2.3-1.8.3-5.3.3-5.3.3s-3.5 0-5.3-.3c-1.1-.2-2-.9-2.2-2.3-.3-1.5-.3-4.5-.3-4.5s0-3 .3-4.5Z"></path>
-                                        <path d="m10.4 9 4.5 3-4.5 3V9Z"></path>
-                                    </svg>
-                                </span>
-                                <span class="hook-copy">
-                                    <span class="hook-topline"><span class="method">POST</span> /watch</span>
-                                    <span class="hook-title"><strong>YouTube</strong><span>@onlykamz7</span></span>
-                                </span>
-                                <span class="packet">200 OK</span>
-                            </a>
-
-                            <a class="webhook-card" href="https://www.instagram.com/onlykamz97?igsh=cm1mZGMwNzJwaDU2&utm_source=qr" target="_blank" rel="noopener noreferrer" data-route="POST /visuals" data-title="Instagram" data-payload="payload: snapshots -> @onlykamz97" data-tone="frame locked" aria-label="Open OnlyKamz on Instagram">
-                                <span class="icon-box icon-instagram" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24">
-                                        <rect x="4.2" y="4.2" width="15.6" height="15.6" rx="4.2"></rect>
-                                        <circle cx="12" cy="12" r="3.5"></circle>
-                                        <path d="M16.9 7.2h.1"></path>
-                                    </svg>
-                                </span>
-                                <span class="hook-copy">
-                                    <span class="hook-topline"><span class="method">POST</span> /visuals</span>
-                                    <span class="hook-title"><strong>Instagram</strong><span>@onlykamz97</span></span>
-                                </span>
-                                <span class="packet">LIVE</span>
-                            </a>
-
-                            <a class="webhook-card" href="https://x.com/lifeofkrayz?s=21" target="_blank" rel="noopener noreferrer" data-route="PATCH /dispatch" data-title="X" data-payload="payload: live_thoughts -> @lifeofkrayz" data-tone="signal hot" aria-label="Open OnlyKamz on X">
-                                <span class="icon-box icon-x" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24">
-                                        <path d="M5 5l14 14"></path>
-                                        <path d="M19 5 5 19"></path>
-                                    </svg>
-                                </span>
-                                <span class="hook-copy">
-                                    <span class="hook-topline"><span class="method">PATCH</span> /dispatch</span>
-                                    <span class="hook-title"><strong>X</strong><span>@lifeofkrayz</span></span>
-                                </span>
-                                <span class="packet">SYNC</span>
-                            </a>
-
-                            <a class="webhook-card" href="https://youtu.be/dQw4w9WgXcQ?si=hZCDYiObDQ4Vt7Ev" target="_blank" rel="noopener noreferrer" data-route="GET /exclusive" data-title="OnlyFans" data-payload="payload: exclusive_content -> gated" data-tone="classified" aria-label="Open OnlyKamz exclusive content">
-                                <span class="icon-box icon-exclusive" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24">
-                                        <circle cx="12" cy="12" r="8.5"></circle>
-                                        <path d="M8.4 12h7.2"></path>
-                                        <path d="M12 8.4v7.2"></path>
-                                    </svg>
-                                </span>
-                                <span class="hook-copy">
-                                    <span class="hook-topline"><span class="method">GET</span> /exclusive</span>
-                                    <span class="hook-title"><strong>OnlyFans</strong><span>exclusive content</span></span>
-                                </span>
-                                <span class="packet">18+</span>
-                            </a>
-                        </div>
-
-                        <div class="terminal" aria-live="polite">
-                            <div class="terminal-top">
-                                <span>kamz-relay.exe</span>
-                                <span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-                            </div>
-                            <div class="terminal-line">
-                                <b data-terminal-route>POST /watch</b>
-                                <span data-terminal-title>route accepted: YouTube</span>
-                                <small data-terminal-payload>payload: video_feed -> @onlykamz7</small>
-                                <small data-terminal-tone>stream online</small>
-                            </div>
-                        </div>
-                    </aside>
+            <section class="booth" aria-label="Interactive social portals">
+                <img class="booth-art" src="assets/hero-social-hub.svg" alt="">
+                <div class="orbit" aria-hidden="true"></div>
+                <div class="centerpiece" aria-hidden="true">
+                    <strong>K</strong>
+                    <span>tap a portal</span>
                 </div>
+
+                <a class="portal portal-youtube" href="https://youtube.com/@onlykamz97?si=45kwAjh25pIbuLvF" target="_blank" rel="noopener noreferrer" data-name="YouTube" data-desc="Videos, drops, and whatever I upload next.">
+                    <small>watch</small>
+                    <strong>YouTube</strong>
+                    <span>@onlykamz7</span>
+                </a>
+
+                <a class="portal portal-instagram" href="https://www.instagram.com/onlykamz97?igsh=cm1mZGMwNzJwaDU2&utm_source=qr" target="_blank" rel="noopener noreferrer" data-name="Instagram" data-desc="Photos, stories, and day-to-day chaos.">
+                    <small>scroll</small>
+                    <strong>Instagram</strong>
+                    <span>@onlykamz97</span>
+                </a>
+
+                <a class="portal portal-x" href="https://x.com/lifeofkrayz?s=21" target="_blank" rel="noopener noreferrer" data-name="X" data-desc="Quick posts, updates, and whatever is on my mind.">
+                    <small>read</small>
+                    <strong>X</strong>
+                    <span>@lifeofkrayz</span>
+                </a>
+
+                <a class="portal portal-exclusive" href="https://youtu.be/dQw4w9WgXcQ?si=hZCDYiObDQ4Vt7Ev" target="_blank" rel="noopener noreferrer" data-name="Surprise" data-desc="A mystery door for the curious.">
+                    <small>peek</small>
+                    <strong>Surprise</strong>
+                    <span>special link</span>
+                </a>
+
+                <aside class="now-playing" aria-live="polite">
+                    <p>Now highlighting</p>
+                    <strong data-now-name>YouTube</strong>
+                    <span data-now-desc>Videos, drops, and whatever I upload next.</span>
+                </aside>
+            </section>
+        </main>
+
+        <section class="ticker" aria-label="OnlyKamz vibe ticker">
+            <div class="ticker-track">
+                <span>videos live here</span>
+                <span>photos over there</span>
+                <span>posts in motion</span>
+                <span>surprise door unlocked</span>
+                <span>pick a portal</span>
+                <span>videos live here</span>
+                <span>photos over there</span>
+                <span>posts in motion</span>
+                <span>surprise door unlocked</span>
+                <span>pick a portal</span>
             </div>
         </section>
 
-        <section class="afterglow" aria-label="OnlyKamz footer signal">
-            <div class="shell afterglow-grid">
-                <p>Built for quick taps, late scrolls, and links that feel less like buttons and more like a tiny command center.</p>
-                <div class="mini-tags" aria-label="Signal tags">
-                    <span>creator hub</span>
-                    <span>neon relay</span>
-                    <span>github pages</span>
-                </div>
-            </div>
-        </section>
+        <footer class="shell footer">
+            <span>One neon launchpad for every place I post.</span>
+            <nav class="footer-links" aria-label="Footer social links">
+                <a href="https://youtube.com/@onlykamz97?si=45kwAjh25pIbuLvF" target="_blank" rel="noopener noreferrer">YouTube</a>
+                <a href="https://www.instagram.com/onlykamz97?igsh=cm1mZGMwNzJwaDU2&utm_source=qr" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="https://x.com/lifeofkrayz?s=21" target="_blank" rel="noopener noreferrer">X</a>
+            </nav>
+        </footer>
     </div>
 
     <script>
         const root = document.documentElement;
-        const cards = document.querySelectorAll(".webhook-card");
-        const route = document.querySelector("[data-terminal-route]");
-        const title = document.querySelector("[data-terminal-title]");
-        const payload = document.querySelector("[data-terminal-payload]");
-        const tone = document.querySelector("[data-terminal-tone]");
+        const portals = document.querySelectorAll(".portal");
+        const nowName = document.querySelector("[data-now-name]");
+        const nowDesc = document.querySelector("[data-now-desc]");
 
         window.addEventListener("pointermove", (event) => {
             root.style.setProperty("--cursor-x", `${event.clientX}px`);
             root.style.setProperty("--cursor-y", `${event.clientY}px`);
         }, { passive: true });
 
-        cards.forEach((card) => {
-            const syncTerminal = () => {
-                route.textContent = card.dataset.route;
-                title.textContent = `route accepted: ${card.dataset.title}`;
-                payload.textContent = card.dataset.payload;
-                tone.textContent = card.dataset.tone;
+        portals.forEach((portal) => {
+            const tune = () => {
+                nowName.textContent = portal.dataset.name;
+                nowDesc.textContent = portal.dataset.desc;
             };
 
-            card.addEventListener("mouseenter", syncTerminal);
-            card.addEventListener("focus", syncTerminal);
+            portal.addEventListener("mouseenter", tune);
+            portal.addEventListener("focus", tune);
         });
     </script>
 </body>
