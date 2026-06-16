@@ -3,362 +3,909 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OnlyKamz - Cyberpunk Nexus</title>
-    <!-- Tailwind CSS CDN --><script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts - Rajdhani for cyberpunk feel, Inter for readability --><link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
-    
+    <meta name="description" content="OnlyKamz signal hub: videos, socials, and exclusive drops routed through one neon console.">
+    <meta name="theme-color" content="#05070d">
+    <meta property="og:title" content="OnlyKamz | Signal Hub">
+    <meta property="og:description" content="Tap into the OnlyKamz creator signal.">
+    <meta property="og:image" content="https://onlykamz.com/assets/hero-signal-console.svg">
+    <meta property="og:type" content="website">
+    <title>OnlyKamz | Signal Hub</title>
     <style>
-        /* Custom CSS for Intense Cyberpunk Aesthetics */
         :root {
-            --neon-blue: #00e0ff;
-            --neon-pink: #ff00c1;
-            --neon-green: #00ff88;
-            --neon-yellow: #fff200;
-            --dark-bg: #03000b; /* Even darker base */
-            --mid-bg: #0f001c;
-            --light-text: #e0e0e0;
-            --alt-text: #c0c0d0;
+            color-scheme: dark;
+            --bg: #05070d;
+            --panel: rgba(7, 11, 18, 0.72);
+            --panel-strong: rgba(4, 8, 14, 0.9);
+            --line: rgba(135, 231, 255, 0.28);
+            --line-hot: rgba(255, 66, 189, 0.62);
+            --text: #f7fbff;
+            --muted: #a6b9c9;
+            --cyan: #27d8ff;
+            --pink: #ff42bd;
+            --green: #78ff8e;
+            --amber: #ffc14f;
+            --red: #ff5868;
+            --cursor-x: 50vw;
+            --cursor-y: 50vh;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            min-height: 100%;
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--light-text);
-            overflow: hidden; /* Control background layers */
-            position: relative;
-            display: flex; /* Ensure main content is centered */
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
-        
-        /* Main content wrapper to ensure proper centering and scroll */
-        .main-content-wrapper {
-            max-height: 100vh; /* Limit height to viewport */
-            overflow-y: auto; /* Enable vertical scroll for content */
-            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-            padding: 1rem; /* Padding for scrollable area */
-            box-sizing: border-box; /* Include padding in height */
-            position: relative; /* Ensure content is above background effects */
-            z-index: 100; /* Higher than background layers */
-            width: 100%; /* Take full width */
-            display: flex; /* Flex container for centering */
-            align-items: center; /* Center vertically */
-            justify-content: center; /* Center horizontally */
+            min-height: 100%;
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            overflow-x: hidden;
         }
 
-        /* Glitch effect for title */
-        @keyframes glitch-effect {
-            0% { text-shadow: 2px 2px var(--neon-blue), -2px -2px var(--neon-pink); transform: skew(0deg); }
-            25% { text-shadow: -2px -2px var(--neon-green), 2px 2px var(--neon-yellow); transform: skew(5deg); }
-            50% { text-shadow: 2px -2px var(--neon-pink), -2px 2px var(--neon-blue); transform: skew(-5deg); }
-            75% { text-shadow: -2px 2px var(--neon-yellow), 2px -2px var(--neon-green); transform: skew(2deg); }
-            100% { text-shadow: 2px 2px var(--neon-blue), -2px -2px var(--neon-pink); transform: skew(0deg); }
-        }
-
-        /* Subtle flicker for subtitles/handles */
-        @keyframes subtle-flicker {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.9; }
-        }
-
-        /* --- Full-page Animated Background --- */
-        .animated-background {
+        body::before {
+            content: "";
             position: fixed;
-            top: 0;
-            left: 0;
+            inset: 0;
+            z-index: 4;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at var(--cursor-x) var(--cursor-y), rgba(39, 216, 255, 0.16), transparent 280px),
+                linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+            background-size: auto, 100% 5px;
+            mix-blend-mode: screen;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .page {
+            position: relative;
+            min-height: 100vh;
+            background:
+                linear-gradient(180deg, rgba(5, 7, 13, 0.2) 0%, #05070d 86%),
+                radial-gradient(circle at 16% 20%, rgba(255, 193, 79, 0.12), transparent 25rem);
+        }
+
+        .hero {
+            position: relative;
+            display: grid;
+            min-height: 92svh;
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .hero-art {
+            position: absolute;
+            inset: 0;
             width: 100%;
             height: 100%;
-            z-index: 0;
-            background: radial-gradient(circle at top left, var(--mid-bg) 0%, var(--dark-bg) 70%); /* Base gradient */
+            object-fit: cover;
+            object-position: 67% center;
+            filter: saturate(1.1) contrast(1.04);
+            transform: scale(1.02);
+            z-index: -3;
         }
 
-        .animated-background::before,
-        .animated-background::after {
-            content: '';
+        .hero::before {
+            content: "";
             position: absolute;
-            background: linear-gradient(
-                45deg,
-                rgba(0, 224, 255, 0.4) 0%, /* Neon blue */
-                rgba(255, 0, 193, 0.4) 33%, /* Neon pink */
-                rgba(0, 255, 136, 0.4) 66%, /* Neon green */
-                rgba(255, 242, 0, 0.4) 100% /* Neon yellow */
-            );
-            filter: blur(80px); /* Soft glow */
-            opacity: 0.6;
-            animation: move-bg 30s linear infinite alternate;
+            inset: 0;
+            z-index: -2;
+            background:
+                linear-gradient(90deg, rgba(5, 7, 13, 0.94) 0%, rgba(5, 7, 13, 0.72) 43%, rgba(5, 7, 13, 0.12) 100%),
+                linear-gradient(180deg, rgba(5, 7, 13, 0.22) 0%, rgba(5, 7, 13, 0.78) 100%);
         }
 
-        .animated-background::before {
-            width: 150vw;
-            height: 150vh;
-            top: -50%;
-            left: -50%;
-            transform-origin: 0 0;
-            animation: move-bg 30s linear infinite alternate, rotate-bg 60s linear infinite;
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background:
+                linear-gradient(90deg, rgba(39, 216, 255, 0.09) 1px, transparent 1px),
+                linear-gradient(rgba(39, 216, 255, 0.07) 1px, transparent 1px);
+            background-size: 74px 74px;
+            mask-image: linear-gradient(90deg, black 0%, transparent 74%);
+            opacity: 0.58;
         }
 
-        .animated-background::after {
-            width: 120vw;
-            height: 120vh;
-            bottom: -30%;
-            right: -30%;
-            transform-origin: 100% 100%;
-            animation: move-bg 25s linear infinite reverse alternate, rotate-bg 50s linear infinite reverse;
+        .shell {
+            width: min(1180px, calc(100% - 32px));
+            margin: 0 auto;
         }
 
-        @keyframes move-bg {
-            0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(10vw, 10vh) scale(1.1); }
-            100% { transform: translate(0, 0) scale(1); }
-        }
-
-        @keyframes rotate-bg {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* --- END Full-page Animated Background --- */
-
-        /* Hero Title */
-        .hero-title {
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 700;
-            font-size: 4.5rem; /* Larger title */
-            letter-spacing: 0.25em; /* More spacing */
-            color: white;
-            animation: glitch-effect 1.8s infinite alternate; /* Faster, more aggressive glitch */
-            text-transform: uppercase;
-            position: relative;
-            margin-bottom: 0.75rem;
-            line-height: 1;
-            text-align: center; /* Ensure title is centered */
-            width: 100%; /* Occupy full width for centering */
-        }
-        @media (min-width: 768px) {
-            .hero-title {
-                font-size: 7rem; /* Even larger on desktop */
-            }
-        }
-        .hero-subtitle {
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 400;
-            font-size: 1.5rem; /* Larger subtitle */
-            letter-spacing: 0.15em;
-            color: var(--neon-green); /* Changed to neon green */
-            text-shadow: 0 0 8px var(--neon-pink); /* More intense shadow */
-            animation: subtle-flicker 3s infinite alternate; /* Faster flicker */
-            margin-top: -0.5rem; /* Pull closer to title */
-            text-align: center; /* Ensure subtitle is centered */
-            width: 100%; /* Occupy full width for centering */
-        }
-
-        /* Cyber Link Styling */
-        .cyber-link {
-            background-color: rgba(0, 0, 0, 0.6); /* More transparent for background visibility */
-            border: 2px solid var(--neon-blue); /* Thicker border */
-            border-radius: 12px; /* Slightly more rounded */
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother, more defined transition */
-            transform: perspective(1px) translateZ(0); /* Force GPU accel */
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 0 10px rgba(0, 224, 255, 0.4), 0 0 20px rgba(255, 0, 193, 0.2) inset; /* Dual glow effect */
-            backdrop-filter: blur(4px) brightness(1.2); /* More intense blur and brightness */
-            transform-origin: center;
-            display: flex; /* Use flexbox for inner content alignment */
-            align-items: center; /* Center items vertically */
-            justify-content: flex-start; /* Align content to start */
-            text-align: left; /* Default text alignment for content */
-        }
-        
-        .cyber-link:hover {
-            border-color: var(--neon-green); /* Change border color on hover */
-            background-color: rgba(0, 0, 0, 0.8); /* Darker on hover */
-            transform: scale(1.04) translateY(-5px); /* More pronounced lift */
-            box-shadow: 0 0 20px var(--neon-pink), 0 0 35px var(--neon-green) inset, 0 0 50px rgba(255, 242, 0, 0.3); /* Multi-color, multi-intensity glow */
-            animation: none; /* Remove pulse, rely on transition for immediate feedback */
-            outline: 2px solid var(--neon-yellow); /* Outer glow on hover */
-            outline-offset: 3px;
-        }
-
-        .cyber-link-content {
+        .topbar {
             display: flex;
             align-items: center;
-            padding: 1.25rem 2rem; /* More padding */
+            justify-content: space-between;
+            gap: 18px;
+            padding: 24px 0 10px;
+        }
+
+        .brand-lockup {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .brand-mark {
+            position: relative;
+            display: grid;
+            width: 44px;
+            height: 44px;
+            flex: 0 0 auto;
+            place-items: center;
+            border: 1px solid rgba(39, 216, 255, 0.55);
+            border-radius: 8px;
+            background:
+                linear-gradient(135deg, rgba(39, 216, 255, 0.18), rgba(255, 66, 189, 0.13)),
+                rgba(5, 7, 13, 0.62);
+            box-shadow: 0 0 30px rgba(39, 216, 255, 0.18);
+            font-weight: 900;
+        }
+
+        .brand-mark::after {
+            content: "";
+            position: absolute;
+            inset: -5px;
+            border: 1px solid rgba(120, 255, 142, 0.24);
+            border-radius: 8px;
+            clip-path: polygon(0 0, 58% 0, 58% 18%, 18% 18%, 18% 100%, 0 100%);
+        }
+
+        .brand-meta {
+            display: grid;
+            gap: 2px;
+        }
+
+        .brand-meta strong {
+            font-size: 0.98rem;
+            line-height: 1;
+        }
+
+        .brand-meta span {
+            color: var(--muted);
+            font-size: 0.78rem;
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 34px;
+            padding: 7px 12px;
+            border: 1px solid rgba(120, 255, 142, 0.42);
+            border-radius: 8px;
+            background: rgba(5, 7, 13, 0.62);
+            color: #d9ffe0;
+            font-size: 0.82rem;
+            white-space: nowrap;
+            box-shadow: 0 0 24px rgba(120, 255, 142, 0.11);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: var(--green);
+            box-shadow: 0 0 14px var(--green);
+            animation: pulse 1.6s ease-in-out infinite;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.02fr) minmax(390px, 0.78fr);
+            gap: 46px;
+            align-items: end;
+            padding: 46px 0 64px;
+        }
+
+        .intro {
+            display: grid;
+            gap: 24px;
+            align-self: center;
+            padding-bottom: 14px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            width: fit-content;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 10px;
+            border: 1px solid rgba(255, 193, 79, 0.36);
+            border-radius: 8px;
+            background: rgba(5, 7, 13, 0.58);
+            color: #ffe0a3;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 28px;
+            height: 1px;
+            background: linear-gradient(90deg, var(--amber), var(--pink));
+        }
+
+        h1 {
+            max-width: 8ch;
+            margin: 0;
+            font-size: 3.65rem;
+            line-height: 0.88;
+            letter-spacing: 0;
+            text-transform: uppercase;
+            text-wrap: balance;
+            text-shadow:
+                0 0 18px rgba(39, 216, 255, 0.24),
+                0 0 46px rgba(255, 66, 189, 0.14);
+        }
+
+        .lede {
+            max-width: 620px;
+            margin: 0;
+            color: #d9e8f5;
+            font-size: 1.12rem;
+            line-height: 1.65;
+        }
+
+        .metric-row {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            max-width: 650px;
+            border: 1px solid rgba(135, 231, 255, 0.22);
+            border-radius: 8px;
+            background: rgba(5, 7, 13, 0.54);
+            overflow: hidden;
+            backdrop-filter: blur(16px);
+        }
+
+        .metric {
+            display: grid;
+            gap: 5px;
+            min-height: 82px;
+            padding: 14px 16px;
+            border-right: 1px solid rgba(135, 231, 255, 0.18);
+        }
+
+        .metric:last-child {
+            border-right: 0;
+        }
+
+        .metric b {
+            color: var(--text);
+            font-size: 1.45rem;
+            line-height: 1;
+        }
+
+        .metric span {
+            color: var(--muted);
+            font-size: 0.78rem;
+            text-transform: uppercase;
+        }
+
+        .console {
+            display: grid;
+            gap: 14px;
+            align-self: end;
+        }
+
+        .console-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 0 2px;
+            color: #dceaf5;
+        }
+
+        .console-header h2 {
+            margin: 0;
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+
+        .console-header span {
+            color: var(--muted);
+            font-size: 0.78rem;
+        }
+
+        .link-stack {
+            display: grid;
+            gap: 12px;
+        }
+
+        .webhook-card {
+            position: relative;
+            display: grid;
+            min-height: 92px;
+            grid-template-columns: 58px minmax(0, 1fr) auto;
+            align-items: center;
+            gap: 14px;
+            padding: 16px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background:
+                linear-gradient(90deg, rgba(39, 216, 255, 0.08), transparent 40%),
+                var(--panel);
+            box-shadow:
+                0 12px 42px rgba(0, 0, 0, 0.28),
+                inset 0 1px 0 rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(18px);
+            overflow: hidden;
+            transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+        }
+
+        .webhook-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(120, 255, 142, 0.16), rgba(255, 66, 189, 0.18), transparent);
+            transform: translateX(-110%);
+            transition: transform 620ms cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .webhook-card::after {
+            content: "";
+            position: absolute;
+            inset: auto 16px 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--cyan), var(--pink), var(--green), var(--amber));
+            transform: scaleX(0.18);
+            transform-origin: left;
+            opacity: 0.6;
+            transition: transform 240ms ease, opacity 240ms ease;
+        }
+
+        .webhook-card:hover,
+        .webhook-card:focus-visible {
+            transform: translateY(-4px);
+            border-color: rgba(255, 66, 189, 0.72);
+            background:
+                linear-gradient(90deg, rgba(255, 66, 189, 0.12), rgba(39, 216, 255, 0.07) 46%, rgba(120, 255, 142, 0.08)),
+                var(--panel-strong);
+            box-shadow:
+                0 20px 54px rgba(0, 0, 0, 0.38),
+                0 0 34px rgba(255, 66, 189, 0.18),
+                inset 0 1px 0 rgba(255, 255, 255, 0.12);
+        }
+
+        .webhook-card:hover::before,
+        .webhook-card:focus-visible::before {
+            transform: translateX(110%);
+        }
+
+        .webhook-card:hover::after,
+        .webhook-card:focus-visible::after {
+            transform: scaleX(1);
+            opacity: 1;
+        }
+
+        .webhook-card:focus-visible {
+            outline: 2px solid rgba(255, 193, 79, 0.82);
+            outline-offset: 4px;
+        }
+
+        .icon-box {
             position: relative;
             z-index: 1;
-            width: 100%; /* Ensure content takes full width of link */
+            display: grid;
+            width: 58px;
+            height: 58px;
+            place-items: center;
+            border: 1px solid rgba(135, 231, 255, 0.4);
+            border-radius: 8px;
+            background:
+                linear-gradient(135deg, rgba(39, 216, 255, 0.13), rgba(255, 66, 189, 0.13)),
+                rgba(255, 255, 255, 0.04);
         }
 
-        /* Styling for the new <img> logos */
-        .cyber-link .icon {
-            width: 56px; /* Even larger icons */
-            height: 56px;
-            object-fit: contain;
-            filter: drop-shadow(0 0 8px var(--neon-blue)); /* Stronger initial drop shadow */
-            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            margin-right: 2rem; /* More space */
-            flex-shrink: 0;
-        }
-        
-        .cyber-link:hover .icon {
-            transform: scale(1.15) rotate(5deg); /* More dynamic hover for icon */
-            filter: drop-shadow(0 0 15px var(--neon-pink)) brightness(1.3); /* Intense pink glow, brighter */
+        .icon-box svg {
+            width: 28px;
+            height: 28px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
 
-        /* Container for text within link, to allow proper centering of both lines */
-        .platform-text-container {
-            flex-grow: 1; /* Allow text container to take available space */
+        .icon-youtube { color: var(--red); }
+        .icon-instagram { color: var(--pink); }
+        .icon-x { color: var(--cyan); }
+        .icon-exclusive { color: var(--amber); }
+
+        .hook-copy {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            min-width: 0;
+            gap: 5px;
+        }
+
+        .hook-topline {
             display: flex;
-            flex-direction: column;
-            justify-content: center; /* Center vertically if space allows */
-            align-items: center; /* This centers the text horizontally */
-            text-align: center; /* Fallback for older browsers */
+            align-items: center;
+            gap: 8px;
+            min-width: 0;
+            color: var(--muted);
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+            font-size: 0.76rem;
         }
 
-        .platform-name {
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 700; /* Bolder */
-            font-size: 1.6rem; /* Even larger text */
-            color: var(--light-text);
-            letter-spacing: 0.1em;
-            text-shadow: 0 0 6px var(--neon-blue); /* Stronger initial text shadow */
-            transition: color 0.3s ease-out, text-shadow 0.3s ease-out;
-            line-height: 1.2; /* Adjust line height */
+        .method {
+            color: var(--green);
         }
 
-        .platform-handle {
-            font-family: 'Inter', sans-serif;
-            font-weight: 400; /* Slightly bolder handle */
-            font-size: 1.05rem; /* Larger handle */
-            color: var(--neon-green); /* Changed to neon green */
-            animation: subtle-flicker 4s infinite alternate; /* Faster flicker */
-            transition: color 0.3s ease-out;
-            word-break: break-all;
-            text-shadow: 0 0 3px rgba(0, 255, 136, 0.5); /* Subtle shadow for handle */
-            line-height: 1.2; /* Adjust line height */
+        .hook-title {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            min-width: 0;
         }
 
-        .cyber-link:hover .platform-name {
-            color: var(--neon-yellow); /* Yellow on hover */
-            text-shadow: 0 0 10px var(--neon-pink); /* Intense pink glow on hover */
-        }
-        .cyber-link:hover .platform-handle {
-            color: var(--neon-blue); /* Blue on hover */
-            text-shadow: 0 0 5px var(--neon-blue);
+        .hook-title strong {
+            font-size: 1.16rem;
+            line-height: 1.1;
         }
 
-        /* Decorative "energy flow" on hover - more impactful */
-        .cyber-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -120%; /* Start further left */
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.4), rgba(0, 224, 255, 0.4), transparent); /* Multi-color energy flow */
-            transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* Faster, more dynamic sweep */
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.8;
+        .hook-title span {
+            min-width: 0;
+            color: var(--muted);
+            font-size: 0.86rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
-        .cyber-link:hover::before {
-            left: 120%; /* Sweep further across */
+        .packet {
+            position: relative;
+            z-index: 1;
+            display: inline-grid;
+            min-width: 64px;
+            min-height: 32px;
+            place-items: center;
+            border: 1px solid rgba(120, 255, 142, 0.42);
+            border-radius: 8px;
+            color: #d9ffe0;
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+            font-size: 0.72rem;
+            background: rgba(120, 255, 142, 0.08);
         }
 
-        /* Custom 18+ SVG styling */
-        .cyber-link .adult-icon-svg {
-            width: 56px;
-            height: 56px;
-            margin-right: 2rem;
-            flex-shrink: 0;
-            fill: none; /* No fill */
-            stroke: var(--neon-blue); /* Neon blue stroke */
-            stroke-width: 1.5;
-            filter: drop-shadow(0 0 6px var(--neon-blue));
-            transition: stroke 0.3s ease-out, filter 0.3s ease-out, transform 0.3s ease-out;
+        .terminal {
+            display: grid;
+            gap: 12px;
+            padding: 16px;
+            border: 1px solid rgba(135, 231, 255, 0.23);
+            border-radius: 8px;
+            background: rgba(1, 4, 9, 0.7);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(18px);
         }
-        .cyber-link:hover .adult-icon-svg {
-            stroke: var(--neon-pink); /* Pink stroke on hover */
-            filter: drop-shadow(0 0 10px var(--neon-pink));
-            transform: scale(1.1); /* Scale on hover */
+
+        .terminal-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            color: var(--muted);
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+            font-size: 0.76rem;
         }
-        .cyber-link .adult-icon-svg text {
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 700;
-            font-size: 10px;
-            text-anchor: middle;
-            dominant-baseline: central;
-            fill: var(--light-text);
-            transition: fill 0.3s ease-out;
+
+        .window-dots {
+            display: flex;
+            gap: 6px;
         }
-        .cyber-link:hover .adult-icon-svg text {
-            fill: var(--neon-yellow); /* Yellow text on hover */
+
+        .window-dots i {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: var(--cyan);
+            box-shadow: 0 0 10px currentColor;
+        }
+
+        .window-dots i:nth-child(2) {
+            background: var(--pink);
+        }
+
+        .window-dots i:nth-child(3) {
+            background: var(--green);
+        }
+
+        .terminal-line {
+            display: grid;
+            gap: 6px;
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+            font-size: 0.82rem;
+            line-height: 1.5;
+        }
+
+        .terminal-line b {
+            color: var(--cyan);
+            font-weight: 600;
+        }
+
+        .terminal-line span {
+            color: #dceaf5;
+        }
+
+        .terminal-line small {
+            color: var(--muted);
+            font-size: 0.76rem;
+        }
+
+        .afterglow {
+            padding: 34px 0 44px;
+            border-top: 1px solid rgba(135, 231, 255, 0.16);
+            background:
+                linear-gradient(90deg, rgba(39, 216, 255, 0.09), transparent 28%, rgba(255, 193, 79, 0.07)),
+                #05070d;
+        }
+
+        .afterglow-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .afterglow p {
+            max-width: 660px;
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.55;
+        }
+
+        .mini-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .mini-tags span {
+            padding: 7px 9px;
+            border: 1px solid rgba(135, 231, 255, 0.21);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.04);
+            color: #dceaf5;
+            font-size: 0.78rem;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.6;
+            }
+        }
+
+        @media (min-width: 760px) {
+            h1 {
+                font-size: 5rem;
+            }
+        }
+
+        @media (min-width: 1080px) {
+            h1 {
+                font-size: 6.2rem;
+            }
+        }
+
+        @media (max-width: 940px) {
+            .hero {
+                min-height: 90svh;
+            }
+
+            .hero::before {
+                background:
+                    linear-gradient(180deg, rgba(5, 7, 13, 0.9) 0%, rgba(5, 7, 13, 0.55) 46%, rgba(5, 7, 13, 0.92) 100%),
+                    linear-gradient(90deg, rgba(5, 7, 13, 0.72), rgba(5, 7, 13, 0.28));
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 28px;
+                padding: 34px 0 46px;
+            }
+
+            .intro {
+                padding-bottom: 0;
+            }
+
+            .console {
+                align-self: auto;
+            }
+
+            .afterglow-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mini-tags {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 620px) {
+            .shell {
+                width: calc(100% - 24px);
+            }
+
+            .topbar {
+                display: grid;
+                justify-content: start;
+                justify-items: start;
+                align-items: start;
+                gap: 12px;
+                padding-top: 16px;
+            }
+
+            .brand-mark {
+                width: 40px;
+                height: 40px;
+            }
+
+            .brand-meta span,
+            .status-pill {
+                font-size: 0.72rem;
+            }
+
+            .status-pill {
+                padding: 7px 9px;
+                max-width: 100%;
+            }
+
+            h1 {
+                font-size: 3.1rem;
+            }
+
+            .intro,
+            .console,
+            .lede {
+                width: 100%;
+                min-width: 0;
+            }
+
+            .lede {
+                max-width: 32ch;
+                font-size: 1rem;
+                line-height: 1.58;
+                overflow-wrap: break-word;
+            }
+
+            .metric-row {
+                grid-template-columns: 1fr;
+            }
+
+            .metric {
+                min-height: 70px;
+                border-right: 0;
+                border-bottom: 1px solid rgba(135, 231, 255, 0.18);
+            }
+
+            .metric:last-child {
+                border-bottom: 0;
+            }
+
+            .webhook-card {
+                grid-template-columns: 48px minmax(0, 1fr);
+                min-height: 104px;
+                padding: 14px;
+            }
+
+            .icon-box {
+                width: 48px;
+                height: 48px;
+            }
+
+            .packet {
+                grid-column: 2;
+                justify-self: start;
+                min-height: 28px;
+            }
+
+            .hook-title {
+                display: grid;
+                gap: 3px;
+            }
+
+            .hook-title span {
+                white-space: normal;
+            }
+
+            .console-header {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 4px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.001ms !important;
+            }
         }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen">
-
-    <!-- Full-page Animated Background --><div class="animated-background"></div>
-
-    <div class="main-content-wrapper w-full flex justify-center">
-        <main class="z-10 w-full max-w-xl mx-auto text-center relative py-8">
-            <!-- Header Title --><header class="mb-12 md:mb-16">
-                <h1 class="hero-title">OnlyKamz</h1>
-                <p class="hero-subtitle">[ Enter the World of Kam ]</p>
-            </header>
-
-            <!-- Links Container --><div class="space-y-6">
-
-                <!-- YouTube Link --><a href="https://youtube.com/@onlykamz97?si=45kwAjh25pIbuLvF" target="_blank" rel="noopener noreferrer" class="cyber-link block">
-                    <div class="cyber-link-content">
-                        <!-- Logo from CDN --><img class="icon" src="https://cdn.svgporn.com/logos/youtube-icon.svg" alt="YouTube Logo">
-                        <div class="platform-text-container">
-                            <span class="platform-name">YouTube</span>
-                            <p class="platform-handle">@onlykamz7</p>
-                        </div>
+<body>
+    <div class="page">
+        <section class="hero" aria-label="OnlyKamz signal hub">
+            <img class="hero-art" src="assets/hero-signal-console.svg" alt="">
+            <div class="shell">
+                <header class="topbar">
+                    <a class="brand-lockup" href="https://onlykamz.com" aria-label="OnlyKamz home">
+                        <span class="brand-mark" aria-hidden="true">K</span>
+                        <span class="brand-meta">
+                            <strong>OnlyKamz</strong>
+                            <span>creator signal router</span>
+                        </span>
+                    </a>
+                    <div class="status-pill" aria-label="Site status online">
+                        <span class="status-dot" aria-hidden="true"></span>
+                        ONLINE
                     </div>
-                </a>
+                </header>
 
-                <!-- Instagram Link --><a href="https://www.instagram.com/onlykamz97?igsh=cm1mZGMwNzJwaDU2&utm_source=qr" target="_blank" rel="noopener noreferrer" class="cyber-link block">
-                    <div class="cyber-link-content">
-                        <!-- Logo from CDN --><img class="icon" src="https://cdn.svgporn.com/logos/instagram-icon.svg" alt="Instagram Logo">
-                        <div class="platform-text-container">
-                            <span class="platform-name">Instagram</span>
-                            <p class="platform-handle">@onlykamz97</p>
+                <div class="hero-grid">
+                    <main class="intro">
+                        <span class="eyebrow">webhook deck armed</span>
+                        <h1>OnlyKamz</h1>
+                        <p class="lede">A high-voltage link console for the videos, socials, drops, and little bits of beautifully unnecessary internet chaos.</p>
+                        <div class="metric-row" aria-label="OnlyKamz signal metrics">
+                            <div class="metric">
+                                <b>04</b>
+                                <span>endpoints</span>
+                            </div>
+                            <div class="metric">
+                                <b>24/7</b>
+                                <span>signal</span>
+                            </div>
+                            <div class="metric">
+                                <b>200</b>
+                                <span>status</span>
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </main>
 
-                <!-- Twitter Link --><a href="https://x.com/lifeofkrayz?s=21" target="_blank" rel="noopener noreferrer" class="cyber-link block">
-                    <div class="cyber-link-content">
-                        <!-- Logo from CDN (classic bird logo) --><img class="icon" src="https://cdn.svgporn.com/logos/twitter.svg" alt="Twitter Logo">
-                        <div class="platform-text-container">
-                            <span class="platform-name">Twitter</span>
-                            <p class="platform-handle">@lifeofkrayz</p>
+                    <aside class="console" aria-label="OnlyKamz links">
+                        <div class="console-header">
+                            <h2>Webhook Relay</h2>
+                            <span>onlykamz.com/api/routes</span>
                         </div>
-                    </div>
-                </a>
 
-                <!-- OnlyFans Link --><a href="https://youtu.be/dQw4w9WgXcQ?si=hZCDYiObDQ4Vt7Ev" target="_blank" rel="noopener noreferrer" class="cyber-link block">
-                    <div class="cyber-link-content">
-                        <!-- Custom styled 18+ icon --><svg class="adult-icon-svg icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <title>Adult Icon</title>
-                            <circle cx="12" cy="12" r="10.5"/>
-                            <text x="12" y="12">18+</text>
-                        </svg>
-                        <div class="platform-text-container">
-                            <span class="platform-name">OnlyFans</span>
-                            <p class="platform-handle">[ EXCLUSIVE CONTENT ]</p>
+                        <div class="link-stack">
+                            <a class="webhook-card" href="https://youtube.com/@onlykamz97?si=45kwAjh25pIbuLvF" target="_blank" rel="noopener noreferrer" data-route="POST /watch" data-title="YouTube" data-payload="payload: video_feed -> @onlykamz7" data-tone="stream online" aria-label="Open OnlyKamz on YouTube">
+                                <span class="icon-box icon-youtube" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M4.5 7.5c.2-1.2 1.1-2.1 2.2-2.3 1.8-.3 5.3-.3 5.3-.3s3.5 0 5.3.3c1.1.2 2 .9 2.2 2.3.3 1.5.3 4.5.3 4.5s0 3-.3 4.5c-.2 1.2-1.1 2.1-2.2 2.3-1.8.3-5.3.3-5.3.3s-3.5 0-5.3-.3c-1.1-.2-2-.9-2.2-2.3-.3-1.5-.3-4.5-.3-4.5s0-3 .3-4.5Z"></path>
+                                        <path d="m10.4 9 4.5 3-4.5 3V9Z"></path>
+                                    </svg>
+                                </span>
+                                <span class="hook-copy">
+                                    <span class="hook-topline"><span class="method">POST</span> /watch</span>
+                                    <span class="hook-title"><strong>YouTube</strong><span>@onlykamz7</span></span>
+                                </span>
+                                <span class="packet">200 OK</span>
+                            </a>
+
+                            <a class="webhook-card" href="https://www.instagram.com/onlykamz97?igsh=cm1mZGMwNzJwaDU2&utm_source=qr" target="_blank" rel="noopener noreferrer" data-route="POST /visuals" data-title="Instagram" data-payload="payload: snapshots -> @onlykamz97" data-tone="frame locked" aria-label="Open OnlyKamz on Instagram">
+                                <span class="icon-box icon-instagram" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24">
+                                        <rect x="4.2" y="4.2" width="15.6" height="15.6" rx="4.2"></rect>
+                                        <circle cx="12" cy="12" r="3.5"></circle>
+                                        <path d="M16.9 7.2h.1"></path>
+                                    </svg>
+                                </span>
+                                <span class="hook-copy">
+                                    <span class="hook-topline"><span class="method">POST</span> /visuals</span>
+                                    <span class="hook-title"><strong>Instagram</strong><span>@onlykamz97</span></span>
+                                </span>
+                                <span class="packet">LIVE</span>
+                            </a>
+
+                            <a class="webhook-card" href="https://x.com/lifeofkrayz?s=21" target="_blank" rel="noopener noreferrer" data-route="PATCH /dispatch" data-title="X" data-payload="payload: live_thoughts -> @lifeofkrayz" data-tone="signal hot" aria-label="Open OnlyKamz on X">
+                                <span class="icon-box icon-x" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M5 5l14 14"></path>
+                                        <path d="M19 5 5 19"></path>
+                                    </svg>
+                                </span>
+                                <span class="hook-copy">
+                                    <span class="hook-topline"><span class="method">PATCH</span> /dispatch</span>
+                                    <span class="hook-title"><strong>X</strong><span>@lifeofkrayz</span></span>
+                                </span>
+                                <span class="packet">SYNC</span>
+                            </a>
+
+                            <a class="webhook-card" href="https://youtu.be/dQw4w9WgXcQ?si=hZCDYiObDQ4Vt7Ev" target="_blank" rel="noopener noreferrer" data-route="GET /exclusive" data-title="OnlyFans" data-payload="payload: exclusive_content -> gated" data-tone="classified" aria-label="Open OnlyKamz exclusive content">
+                                <span class="icon-box icon-exclusive" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24">
+                                        <circle cx="12" cy="12" r="8.5"></circle>
+                                        <path d="M8.4 12h7.2"></path>
+                                        <path d="M12 8.4v7.2"></path>
+                                    </svg>
+                                </span>
+                                <span class="hook-copy">
+                                    <span class="hook-topline"><span class="method">GET</span> /exclusive</span>
+                                    <span class="hook-title"><strong>OnlyFans</strong><span>exclusive content</span></span>
+                                </span>
+                                <span class="packet">18+</span>
+                            </a>
                         </div>
-                    </div>
-                </a>
 
+                        <div class="terminal" aria-live="polite">
+                            <div class="terminal-top">
+                                <span>kamz-relay.exe</span>
+                                <span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                            </div>
+                            <div class="terminal-line">
+                                <b data-terminal-route>POST /watch</b>
+                                <span data-terminal-title>route accepted: YouTube</span>
+                                <small data-terminal-payload>payload: video_feed -> @onlykamz7</small>
+                                <small data-terminal-tone>stream online</small>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
             </div>
-        </main>
+        </section>
+
+        <section class="afterglow" aria-label="OnlyKamz footer signal">
+            <div class="shell afterglow-grid">
+                <p>Built for quick taps, late scrolls, and links that feel less like buttons and more like a tiny command center.</p>
+                <div class="mini-tags" aria-label="Signal tags">
+                    <span>creator hub</span>
+                    <span>neon relay</span>
+                    <span>github pages</span>
+                </div>
+            </div>
+        </section>
     </div>
+
+    <script>
+        const root = document.documentElement;
+        const cards = document.querySelectorAll(".webhook-card");
+        const route = document.querySelector("[data-terminal-route]");
+        const title = document.querySelector("[data-terminal-title]");
+        const payload = document.querySelector("[data-terminal-payload]");
+        const tone = document.querySelector("[data-terminal-tone]");
+
+        window.addEventListener("pointermove", (event) => {
+            root.style.setProperty("--cursor-x", `${event.clientX}px`);
+            root.style.setProperty("--cursor-y", `${event.clientY}px`);
+        }, { passive: true });
+
+        cards.forEach((card) => {
+            const syncTerminal = () => {
+                route.textContent = card.dataset.route;
+                title.textContent = `route accepted: ${card.dataset.title}`;
+                payload.textContent = card.dataset.payload;
+                tone.textContent = card.dataset.tone;
+            };
+
+            card.addEventListener("mouseenter", syncTerminal);
+            card.addEventListener("focus", syncTerminal);
+        });
+    </script>
 </body>
 </html>
